@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.left img {
+    width: 300px;
+    display: inline-block;
+    position: relative;
+}
+
+div.navbar {
+    background-color: white;
+    position: absolute;
+}
