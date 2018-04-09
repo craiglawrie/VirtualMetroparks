@@ -7,11 +7,15 @@
 <h2>Choose your park</h2>
 
 
-<div>Clickable map of parks</div>
+<div id="park-selection-map">
+    <img src="~/Content/images/map-preview-og-image.png" />
+</div>
 
-<div>List of parks</div>
-@foreach (var park in Model)
-{
-    <p>@park.Name</p>
-}
+<div>
+    
+    @foreach (var park in Model)
+    {
+        <p>@park.Name</p>
+    }
 
+</div>

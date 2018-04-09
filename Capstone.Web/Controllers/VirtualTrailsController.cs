@@ -27,5 +27,17 @@ namespace Capstone.Web.Controllers
             List<ParkModel> parks = dal.GetAllParks();
             return View("ChoosePark", parks);
         }
+
+        public ActionResult ChooseTrail(int id)
+        {
+            ParkModel park = dal.GetParkById(id);
+            return View("ChooseTrail", park);
+        }
+
+        public ActionResult ViewTrail(int id)
+        {
+            ParkModel park = dal.GetParkById(id);
+            return View("ViewTrail", park);
+        }
     }
 }

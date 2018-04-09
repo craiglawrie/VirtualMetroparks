@@ -39,29 +39,42 @@ textarea {
     position: relative;
 }
 
-.navbar-header {
-}
-
 #logo-header {
-    position: relative;
-
+    display: grid;
+    grid-template-columns: 3fr 2fr 1fr;
+    grid-gap: 1em;
+    grid-template-areas: 'a b c';
 }
 
 .left {
-    display: inline-block;
-    width: 50%;
-    position: relative;
+    grid-area: a;
+    align-self: center;
 }
 
 .right{
-    display: inline-block;
-    width: calc(50% - 1em);
+    grid-area: b;
     text-align: right;
-    position: absolute;
-    right: 0;
+    align-self: center;
+    color: rgb(28, 86, 48);
 }
+
+.right span {
+    font-weight: bold;
+}
+
+.right span:nth-child(1) {
+    font-size: 4rem;
+}
+
+    .right span:nth-child(2) {
+        font-size: 8rem;
+    }
 
 div.navbar {
     background-color: lightgreen;
     position: absolute;
+}
+
+#park-selection-map img {
+    width: 80%;
 }
