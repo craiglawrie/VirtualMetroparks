@@ -10,7 +10,12 @@
 <body>
 
     <header>
-        
+        <div class="left">
+            <img src="~/Content/images/MetroParkLogo.jpg" width="500px" height="300px" />
+        </div>
+        <div class="right">
+            <span>TEAM</span><span>&amp;</span>
+        </div>
     </header>
 
     <nav>
@@ -22,5 +27,7 @@
     </main>
 
     @RenderSection("scripts", required: false)
+
+    <footer>&copy; @DateTime.Now.Year TeamAmpersand</footer>
 </body>
 </html>
