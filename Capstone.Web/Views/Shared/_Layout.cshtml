@@ -7,19 +7,24 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    
 </head>
 <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <h1>Hello World!</h1>
-            <h1>Hi!</h1>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <div class="left">
+                    <img src="~/Content/images/MetroParkLogo.jpg" />
+                </div>
+                <div class="right">
+                    <span>TEAM</span><span>&amp;</span>
+                </div>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">

@@ -1,5 +1,15 @@
-﻿body {
-    padding-top: 50px;
+﻿@font-face {
+    font-family: 'fontawesome-webfont';
+    src: URL('fontawesome-webfont.ttf') format('ttf'), 
+        URL('fontawesome-webfont.woff') format('woff');
+}
+
+*{
+    font-family: sans-serif Arial;
+}
+
+body {
+    padding-top: 200px;
     padding-bottom: 20px;
 }
 
@@ -26,6 +36,17 @@ textarea {
 .left img {
     width: 300px;
     display: inline-block;
+    position: relative;
+}
+.left {
+    display: inline-block;
+    width: 50%;
+    position: relative;
+}
+.right{
+    display: inline-block;
+    width: calc(50% - 1em);
+    text-align: right;
     position: relative;
 }
 
