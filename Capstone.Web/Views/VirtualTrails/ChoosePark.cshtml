@@ -10,5 +10,8 @@
 <div>Clickable map of parks</div>
 
 <div>List of parks</div>
-
+@foreach (var park in Model)
+{
+    <p>@park.Name</p>
+}
 

@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using Capstone.Web.DAL;
+using Ninject;
 using Ninject.Web.Common.WebHost;
 using Ninject.Web.WebApi;
 using System;
@@ -32,7 +33,7 @@ namespace Capstone.Web
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             // Configure Bindings
-            // kernel.Bind<interface>().To<class>();
+            kernel.Bind<IParkDAL>().To<FakeParkDAL>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 

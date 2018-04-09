@@ -38,19 +38,30 @@ textarea {
     display: inline-block;
     position: relative;
 }
+
+.navbar-header {
+}
+
+#logo-header {
+    position: relative;
+
+}
+
 .left {
     display: inline-block;
     width: 50%;
     position: relative;
 }
+
 .right{
     display: inline-block;
     width: calc(50% - 1em);
     text-align: right;
-    position: relative;
+    position: absolute;
+    right: 0;
 }
 
 div.navbar {
-    background-color: white;
+    background-color: lightgreen;
     position: absolute;
 }
