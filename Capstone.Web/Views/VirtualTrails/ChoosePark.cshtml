@@ -7,19 +7,25 @@
 <h2>Choose your park</h2>
 
 
-<div id="park-selection-map">
-    <img src="~/Content/images/map-preview-og-image.png" />
+<div id="map">
+    
 </div>
+    
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTlmooQjxAlorbRMikqwVUu2nYApFy5Y&callback=initMap">
+    </script>
+
+
 
 <div class="park-list-description">
 
     @foreach (var park in Model)
     {
-        <p>
+        <div class="inner-box-park">
         <img src="~/Content/images/@park.Image" />
         <h4>@park.Name</h4>
         <span>@park.Description</span>
-        </p>
+        </div>
     }
 
 </div>

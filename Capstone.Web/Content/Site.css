@@ -79,20 +79,37 @@ div.navbar {
     position: absolute;
 }
 
-#park-selection-map img {
-    width: 80%;
+#map {
+
+    height: 400px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 
 .park-list-description img{
     width: 200px;
     float: left;
-    padding-right: 8px;
+    margin-right: 5px;
+    border-radius: 5px;
 }
 
-.park-list-description{
+.park-list-description {
     padding: 16px;
     margin-top: 30px;
     height: 300px;
     overflow-y: scroll;
+    background-color: #ab947e;
+    border-radius: 5px;
+}
+
+.inner-box-park {
+    border: solid black 1px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #c3a995;
 }
 
