@@ -207,6 +207,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\HenryChurchRock.jpg" />
     <Content Include="Content\images\map-preview-og-image.png" />
     <Content Include="Content\images\metropark 2.png" />
     <Content Include="Content\images\MetroParkLogo.jpg" />
@@ -216,6 +217,8 @@
     <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\Fonts\FontAwesome.otf" />
     <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\Nimbus_Sans_Becker_PBla.ttf.woff" />
+    <Content Include="Content\Fonts\Nimbus_Sans_Becker_PBla.ttf.eot" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

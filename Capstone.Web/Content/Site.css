@@ -1,8 +1,8 @@
 ﻿@font-face {
-    font-family: 'fontawesome-webfont';
-    src: URL('fontawesome-webfont.ttf') format('ttf'), URL('fontawesome-webfont.woff') format('woff');
+    font-family: 'Nimbus_Sans_Becker_PBla';
+    src: url('Nimbus_Sans_Becker_PBla.ttf.woff') format('woff'), url('Nimbus_Sans_Becker_PBla.ttf.svg#Nimbus_Sans_Becker_PBla') format('svg'), url('Nimbus_Sans_Becker_PBla.ttf.eot'), url('Nimbus_Sans_Becker_PBla.ttf.eot?#iefix') format('embedded-opentype');
+    font-style: normal;
 }
-
 * {
     font-family: sans-serif Arial;
 }
@@ -82,3 +82,17 @@ div.navbar {
 #park-selection-map img {
     width: 80%;
 }
+
+.park-list-description img{
+    width: 200px;
+    float: left;
+    padding-right: 8px;
+}
+
+.park-list-description{
+    padding: 16px;
+    margin-top: 30px;
+    height: 300px;
+    overflow-y: scroll;
+}
+

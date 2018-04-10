@@ -11,11 +11,15 @@
     <img src="~/Content/images/map-preview-og-image.png" />
 </div>
 
-<div>
-    
+<div class="park-list-description">
+
     @foreach (var park in Model)
     {
-        <p>@park.Name</p>
+        <p>
+        <img src="~/Content/images/@park.Image" />
+        <h4>@park.Name</h4>
+        <span>@park.Description</span>
+        </p>
     }
 
 </div>
