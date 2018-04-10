@@ -79,6 +79,9 @@ div.navbar {
     position: absolute;
 }
 
+h2{
+    text-align: center;
+}
 #map {
 
     height: 400px;
@@ -111,5 +114,9 @@ div.navbar {
     padding: 5px;
     border-radius: 5px;
     background-color: #c3a995;
+}
+
+footer {
+    text-align: center;
 }
 
