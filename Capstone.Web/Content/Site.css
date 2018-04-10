@@ -1,10 +1,9 @@
 ﻿@font-face {
     font-family: 'fontawesome-webfont';
-    src: URL('fontawesome-webfont.ttf') format('ttf'), 
-        URL('fontawesome-webfont.woff') format('woff');
+    src: URL('fontawesome-webfont.ttf') format('ttf'), URL('fontawesome-webfont.woff') format('woff');
 }
 
-*{
+* {
     font-family: sans-serif Arial;
 }
 
@@ -33,41 +32,46 @@ textarea {
     max-width: 280px;
 }
 
-.left img {
-    width: 300px;
-    display: inline-block;
-    position: relative;
-}
-
 #logo-header {
     display: grid;
-    grid-template-columns: 3fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr;
     grid-gap: 1em;
-    grid-template-areas: 'a b c';
+    grid-template-areas: 'a b';
 }
 
-.left {
+.left-header {
     grid-area: a;
     align-self: center;
 }
 
-.right{
+    .left-header img {
+        width: 300px;
+        display: inline-block;
+        position: relative;
+    }
+
+.right-header {
     grid-area: b;
-    text-align: right;
-    align-self: center;
+    padding-top: 6.65rem;
+}
+
+.right-header span {
     color: rgb(28, 86, 48);
+    font-weight: 900;
+    font-size: 2.3rem;
 }
 
-.right span {
-    font-weight: bold;
+.right-header-amp {
+    grid-area: b;
+    position: relative;
+    left: 7rem;
+    padding-top: 3.4rem;
 }
 
-.right span:nth-child(1) {
-    font-size: 4rem;
-}
-
-    .right span:nth-child(2) {
-        font-size: 8rem;
+    .right-header-amp span {
+        color: rgb(28, 86, 48);
+        font-weight: 600;
+        font-size: 6rem;
     }
 
 div.navbar {
