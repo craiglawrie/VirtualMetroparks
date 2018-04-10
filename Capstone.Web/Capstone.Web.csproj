@@ -255,6 +255,7 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\VirtualTrails\ChoosePark.cshtml" />
+    <Content Include="Views\VirtualTrails\ChooseTrail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
