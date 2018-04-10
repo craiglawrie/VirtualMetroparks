@@ -34,9 +34,21 @@ textarea {
 
 #logo-header {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 89% 10%;
     grid-gap: 1em;
     grid-template-areas: 'a b';
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        grid-template-areas: 'a' 'b';
+    }
+
+    body {
+        padding-top: 300px;
+    }
 }
 
 .left-header {
@@ -64,7 +76,9 @@ textarea {
 .right-header-amp {
     grid-area: b;
     position: relative;
+    display: inline-block;
     left: 7rem;
+    width: 5rem;
     padding-top: 3.4rem;
 }
 
@@ -83,14 +97,12 @@ h2{
     text-align: center;
 }
 #map {
-
     height: 400px;
     width: 90%;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-
 
 .park-list-description img{
     width: 200px;
@@ -119,4 +131,3 @@ h2{
 footer {
     text-align: center;
 }
-
