@@ -33,12 +33,12 @@ function initMap() {
                 marker[i] = new google.maps.Marker({
                     position: parkDetails,
                     title: parkDetails.name,
-                    map: map
+                    map: map,
+                    destinationLink: parkDetails.link
                 });
 
-                google.maps.event.addListener(marker[i], 'click', function (e) {
-                    console.log(e);
-                    //window.location.href = parkDetails.link;
+                google.maps.event.addListener(marker[i], 'click', function () {
+                    window.location.href = this.destinationLink;
                 })
 
                 i++;
