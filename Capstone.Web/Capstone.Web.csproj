@@ -201,7 +201,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PanoramicModel.cs" />
     <Compile Include="Models\ParkModel.cs" />
+    <Compile Include="Models\TrailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

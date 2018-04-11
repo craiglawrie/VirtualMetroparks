@@ -4,5 +4,31 @@
     ViewBag.Title = "ChooseTrail";
 }
 
-<h2>Viewing @Model.Name</h2>
+<h2>@Model.Name</h2>
+<h2>Choose your trail!</h2>
 
+
+<div id="map"></div>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTlmooQjxAlorbRMikqwVUu2nYApFy5Y&callback=initParkMap" >
+</script>
+
+<div class="park-list-description">
+
+    @if (Model.Trails != null)
+    {
+        foreach (var trail in Model.Trails)
+        {
+            <div class="inner-box-park">
+                <img src="~/Content/images/@trail.Image" />
+                <a href="@Url.Action("ViewTrail","VirtualTrails", new { id = @trail.TrailHeadId })">
+                    <h4>@trail.Name</h4>
+                </a>
+                <span>@trail.Description</span>
+            </div>
+        }
+    }
+    
+
+</div>
