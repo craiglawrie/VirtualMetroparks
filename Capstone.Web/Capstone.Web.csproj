@@ -208,6 +208,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\background-img-less-wide-shot-waterfall.jpg" />
+    <Content Include="Content\images\background-img-wide-shot-forest-bottom.jpg" />
+    <Content Include="Content\images\background-img-wide-shot-waterfall.jpg" />
     <Content Include="Content\images\HenryChurchRock.jpg" />
     <Content Include="Content\images\map-preview-og-image.png" />
     <Content Include="Content\images\metropark 2.png" />
