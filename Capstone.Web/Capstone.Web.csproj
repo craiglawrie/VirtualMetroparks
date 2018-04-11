@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParkInfoController.cs" />
     <Compile Include="Controllers\VirtualTrailsController.cs" />
     <Compile Include="DAL\FakeParkDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
@@ -211,7 +212,7 @@
     <Content Include="Content\images\map-preview-og-image.png" />
     <Content Include="Content\images\metropark 2.png" />
     <Content Include="Content\images\MetroParkLogo.jpg" />
-    <Content Include="Content\ParkMap.js" />
+    <Content Include="Scripts\ParkMap.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="schema.sql" />

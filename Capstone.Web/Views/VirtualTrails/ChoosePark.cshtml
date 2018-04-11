@@ -8,12 +8,12 @@
 
 
 <div id="map">
-    
+
 </div>
-    
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTlmooQjxAlorbRMikqwVUu2nYApFy5Y&callback=initMap">
-    </script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTlmooQjxAlorbRMikqwVUu2nYApFy5Y&callback=initMap">
+</script>
 
 
 
@@ -22,9 +22,11 @@
     @foreach (var park in Model)
     {
         <div class="inner-box-park">
-        <img src="~/Content/images/@park.Image" />
-        <h4>@park.Name</h4>
-        <span>@park.Description</span>
+            <img src="~/Content/images/@park.Image" />
+            <a href="@Url.Action("ChooseTrail","VirtualTrails", new { id = @park.Name })">
+                <h4>@park.Name</h4>
+            </a>
+            <span>@park.Description</span>
         </div>
     }
 

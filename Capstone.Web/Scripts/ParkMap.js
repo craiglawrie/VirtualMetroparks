@@ -1,4 +1,8 @@
 ﻿
+let domainAddress = 'http://localhost:55900';
+
+
+
 function initMap() {
     // location list
     var southChagrin = { name: 'South Chagrin', lat: 41.4185, lng: -81.4252, link: 'http://www.google.com' };
@@ -12,7 +16,38 @@ function initMap() {
         center: administrativeOffices,
     });
 
-    // markers
+    // markers from api
+    let marker = [];
+    let parkDetails = {};
+    fetch(domainAddress + '/api/parks')
+        .then(response => response.json())
+        .then(json => {
+            let i = 0;
+            json.forEach(function (park) {
+                parkDetails.name = park.Name;
+                parkDetails.lat = park.Latitude;
+                parkDetails.lng = park.Longitude;
+                parkDetails.link = domainAddress + `/VirtualTrails/ChooseTrail/${park.Name}`;
+                console.log(parkDetails.link);
+
+                marker[i] = new google.maps.Marker({
+                    position: parkDetails,
+                    title: parkDetails.name,
+                    map: map
+                });
+
+                google.maps.event.addListener(marker[i], 'click', function (e) {
+                    console.log(e);
+                    //window.location.href = parkDetails.link;
+                })
+
+                i++;
+            });
+        });
+
+    /*
+     
+    // manual markers
     // South Chagrin
     var southChagrinMarker = new google.maps.Marker({
         position: southChagrin,
@@ -52,8 +87,9 @@ function initMap() {
     google.maps.event.addListener(administrativeOfficesMarker, 'click', function () {
         window.location.href = administrativeOffices.link;
     });
+
+    */
 }
-initMap();
 
 
 
