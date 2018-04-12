@@ -30,11 +30,11 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpGet]
-        [Route("api/park/{name}")]
-        public IHttpActionResult GetParkByParkName(string name)
+        [Route("api/park/{parkName}")]
+        public IHttpActionResult GetParkByParkName(string parkName)
         {
-            ParkModel park = parkDAL.GetParkByParkName(name);
-            park.Trails = trailDAL.GetTrailsByParkName(name);
+            ParkModel park = parkDAL.GetParkByParkName(parkName);
+            park.Trails = trailDAL.GetTrailsByParkName(parkName);
 
             return Ok(park);
         }

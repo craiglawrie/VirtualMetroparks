@@ -22,7 +22,7 @@
         {
             <div class="inner-box-park">
                 <img src="~/Content/images/@trail.Image" />
-                <a href="@Url.Action("ViewTrail","VirtualTrails", new { id = @trail.TrailHead.PanoramicId })">
+                <a href="@Url.Action("ViewTrail","VirtualTrails", new { trailName = trail.Name })">
                     <h4>@trail.Name</h4>
                 </a>
                 <span>@trail.Description</span>

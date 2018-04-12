@@ -15,7 +15,7 @@ namespace Capstone.Web.DAL
 
         public TrailModel GetTrailByTrailName(string name)
         {
-            throw new NotImplementedException();
+            return trails.Values.First(t => t.Name == name);
         }
 
         public List<TrailModel> GetTrailsByParkId(int id)

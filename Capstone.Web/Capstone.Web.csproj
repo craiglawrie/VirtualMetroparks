@@ -194,8 +194,10 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParkInfoController.cs" />
     <Compile Include="Controllers\VirtualTrailsController.cs" />
+    <Compile Include="DAL\FakePanoramicDAL.cs" />
     <Compile Include="DAL\FakeParkDAL.cs" />
     <Compile Include="DAL\FakeTrailDAL.cs" />
+    <Compile Include="DAL\IPanoramicDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
     <Compile Include="DAL\ITrailDAL.cs" />
     <Compile Include="Global.asax.cs">
@@ -264,6 +266,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\VirtualTrails\ChoosePark.cshtml" />
     <Content Include="Views\VirtualTrails\ChooseTrail.cshtml" />
+    <Content Include="Views\VirtualTrails\ViewTrail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
