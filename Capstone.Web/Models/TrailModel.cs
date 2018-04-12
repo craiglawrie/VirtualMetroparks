@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Capstone.Web.Models
 {
-    public class ParkModel
+    public class TrailModel
     {
-        public int ParkId { get; set; }
+        public int TrailId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
@@ -16,6 +16,6 @@ namespace Capstone.Web.Models
         public double Longitude { get; set; }
         public int Zoom { get; set; }
 
-        public List<TrailModel> Trails { get; set; }
+        public int TrailHeadId { get; set; }
     }
 }

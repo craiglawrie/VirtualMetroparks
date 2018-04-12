@@ -27,5 +27,13 @@ namespace Capstone.Web.Controllers
             return Ok(parks);
         }
 
+        [HttpGet]
+        [Route("api/park/{name}")]
+        public IHttpActionResult GetParkByParkName(string name)
+        {
+            ParkModel park = dal.GetParkByParkName(name);
+
+            return Ok(park);
+        }
     }
 }
