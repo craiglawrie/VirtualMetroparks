@@ -200,6 +200,8 @@
     <Compile Include="DAL\IPanoramicDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
     <Compile Include="DAL\ITrailDAL.cs" />
+    <Compile Include="DAL\ParkSqlDAL.cs" />
+    <Compile Include="DAL\TrailSqlDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
