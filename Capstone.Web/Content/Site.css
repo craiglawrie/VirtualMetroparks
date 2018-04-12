@@ -131,8 +131,9 @@ h2 {
 }
 
 #entrance-text {
-    
-    line-height: 125%;
+    left: 3em;
+    top: 0em;
+
     color: black;
     font-size: 8em;
     font-family: Nimbus_Sans_Becker_PBla, monospace;
@@ -141,8 +142,7 @@ h2 {
 .home-title-top {
     left: 1.2em;
     top: 2.5em;
-    margin: 0 auto;
-    position: absolute;
+
     z-index: 1410;
     line-height: 125%;
     color: mintcream;
@@ -188,17 +188,35 @@ h2 {
     font-family: Nimbus_Sans_Becker_PBla, normal;
 }
 
+@media (max-width: 768px) {
+    #entrance-text {
 
+    }
+    .home-title-top {
 
+    }
+    .home-p-top {
 
-/* PARK/TRAIL LAYOUT *************************************************************/
-#map {
-    height: 400px;
-    width: 90%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    }
+    .home-title-second {
+
+    }
+    .home-p-second {
+
+    }
 }
+
+
+
+
+    /* PARK/TRAIL LAYOUT *************************************************************/
+    #map {
+        height: 400px;
+        width: 90%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
 .park-list-description img {
     width: 200px;
