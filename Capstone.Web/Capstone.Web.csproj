@@ -195,7 +195,9 @@
     <Compile Include="Controllers\ParkInfoController.cs" />
     <Compile Include="Controllers\VirtualTrailsController.cs" />
     <Compile Include="DAL\FakeParkDAL.cs" />
+    <Compile Include="DAL\FakeTrailDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
+    <Compile Include="DAL\ITrailDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

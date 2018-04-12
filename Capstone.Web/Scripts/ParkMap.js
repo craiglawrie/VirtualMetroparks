@@ -11,6 +11,8 @@ function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: administrativeOffices,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
     // markers from api
@@ -56,6 +58,8 @@ function initParkMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: park.Zoom,
                 center: parkCenter,
+                streetViewControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
             // markers from api
