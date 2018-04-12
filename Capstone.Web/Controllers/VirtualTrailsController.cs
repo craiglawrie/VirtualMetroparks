@@ -10,11 +10,15 @@ namespace Capstone.Web.Controllers
 {
     public class VirtualTrailsController : Controller
     {
-        IParkDAL dal;
+        IParkDAL parkDAL;
+        ITrailDAL trailDAL;
+        IPanoramicDAL panoramicDAL;
 
-        public VirtualTrailsController(IParkDAL dal)
+        public VirtualTrailsController(IParkDAL parkDAL, ITrailDAL trailDAL, IPanoramicDAL panoramicDAL)
         {
-            this.dal = dal;
+            this.parkDAL = parkDAL;
+            this.trailDAL = trailDAL;
+            this.panoramicDAL = panoramicDAL;
         }
 
         public ActionResult Index()
@@ -24,21 +28,36 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ChoosePark()
         {
-            List<ParkModel> parks = dal.GetAllParks();
+            List<ParkModel> parks = parkDAL.GetAllParks();
             return View("ChoosePark", parks);
         }
-
+        
         public ActionResult ChooseTrail(string id)
         {
-            ParkModel park = dal.GetParkByParkName(id);
+            ParkModel park = parkDAL.GetParkByParkName(id);
+            park.Trails = trailDAL.GetTrailsByParkName(id);
 
             return View("ChooseTrail", park);
         }
-
-        public ActionResult ViewTrail(int id)
+        
+        public ActionResult ViewTrail(string trailName, int? panoramicId)
         {
-            ParkModel park = dal.GetParkById(id);
-            return View("ViewTrail", park);
+            PanoramicModel image;
+
+            if (panoramicId != null)
+            {
+                image = panoramicDAL.GetPanoramicById((int)panoramicId);
+            }
+            else if (trailName != null)
+            {
+                image = trailDAL.GetTrailByTrailName(trailName).TrailHead;
+            }
+            else
+            {
+                image = trailDAL.GetTrailByTrailName("Henry Church Rock Loop").TrailHead;
+            }
+
+            return View("ViewTrail", image);
         }
     }
 }

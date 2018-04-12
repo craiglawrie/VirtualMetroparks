@@ -3,6 +3,7 @@
     src: url('Nimbus_Sans_Becker_PBla.ttf.woff') format('woff'), url('Nimbus_Sans_Becker_PBla.ttf.svg#Nimbus_Sans_Becker_PBla') format('svg'), url('Nimbus_Sans_Becker_PBla.ttf.eot'), url('Nimbus_Sans_Becker_PBla.ttf.eot?#iefix') format('embedded-opentype');
     font-style: normal;
 }
+
 * {
     font-family: sans-serif Arial;
 }
@@ -67,11 +68,11 @@ textarea {
     padding-top: 6.65rem;
 }
 
-.right-header span {
-    color: rgb(28, 86, 48);
-    font-weight: 900;
-    font-size: 2.3rem;
-}
+    .right-header span {
+        color: rgb(28, 86, 48);
+        font-weight: 900;
+        font-size: 2.3rem;
+    }
 
 .right-header-amp {
     grid-area: b;
@@ -93,9 +94,104 @@ div.navbar {
     position: absolute;
 }
 
-h2{
+h2 {
     text-align: center;
 }
+
+/* INDEX/HOME LAYOUT *************************************************************/
+.background-top-image {
+    z-index: 1400;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 200;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.background-bottom-image {
+    z-index: 1400;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 700px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .background-top-image {
+        top: 500px;
+    }
+    .background-bottom-image {
+        top: 1000px;
+    }
+}
+
+#entrance-text {
+    
+    line-height: 125%;
+    color: black;
+    font-size: 8em;
+    font-family: Nimbus_Sans_Becker_PBla, monospace;
+}
+
+.home-title-top {
+    left: 1.2em;
+    top: 2.5em;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 1410;
+    line-height: 125%;
+    color: mintcream;
+    font-size: 8em;
+    font-family: Nimbus_Sans_Becker_PBla, monospace;
+}
+
+.home-p-top {
+    left: 5em;
+    top: 11em;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 1410;
+    line-height: 125%;
+    color: mintcream;
+    text-shadow: 3px .2px rgb(28, 86, 48);
+    font-size: 3em;
+    font-family: Nimbus_Sans_Becker_PBla, normal;
+}
+
+.home-title-second {
+    left: 1.2em;
+    top: 6.7em;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 1410;
+    line-height: 125%;
+    color: mintcream;
+    font-size: 8em;
+    font-family: Nimbus_Sans_Becker_PBla, monospace;
+}
+
+.home-p-second {
+    left: 5em;
+    top: 22em;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 1410;
+    line-height: 125%;
+    color: mintcream;
+    text-shadow: 3px .2px black;
+    font-size: 3em;
+    font-family: Nimbus_Sans_Becker_PBla, normal;
+}
+
+
+
+
+/* PARK/TRAIL LAYOUT *************************************************************/
 #map {
     height: 400px;
     width: 90%;
@@ -104,7 +200,7 @@ h2{
     margin-right: auto;
 }
 
-.park-list-description img{
+.park-list-description img {
     width: 200px;
     float: left;
     margin-right: 5px;
@@ -128,10 +224,10 @@ h2{
     background-color: #c3a995;
 }
 
-.inner-box-park a {
-    text-decoration: none;
-    color: black;
-}
+    .inner-box-park a {
+        text-decoration: none;
+        color: black;
+    }
 
 footer {
     text-align: center;

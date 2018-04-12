@@ -194,20 +194,29 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParkInfoController.cs" />
     <Compile Include="Controllers\VirtualTrailsController.cs" />
+    <Compile Include="DAL\FakePanoramicDAL.cs" />
     <Compile Include="DAL\FakeParkDAL.cs" />
+    <Compile Include="DAL\FakeTrailDAL.cs" />
+    <Compile Include="DAL\IPanoramicDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
+    <Compile Include="DAL\ITrailDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PanoramicModel.cs" />
     <Compile Include="Models\ParkModel.cs" />
+    <Compile Include="Models\TrailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\background-img-less-wide-shot-waterfall.jpg" />
+    <Content Include="Content\images\background-img-wide-shot-forest-bottom.jpg" />
+    <Content Include="Content\images\background-img-wide-shot-waterfall.jpg" />
     <Content Include="Content\images\HenryChurchRock.jpg" />
     <Content Include="Content\images\map-preview-og-image.png" />
     <Content Include="Content\images\metropark 2.png" />
@@ -257,6 +266,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\VirtualTrails\ChoosePark.cshtml" />
     <Content Include="Views\VirtualTrails\ChooseTrail.cshtml" />
+    <Content Include="Views\VirtualTrails\ViewTrail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

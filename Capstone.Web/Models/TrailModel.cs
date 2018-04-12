@@ -5,17 +5,20 @@ using System.Web;
 
 namespace Capstone.Web.Models
 {
-    public class ParkModel
+    public class TrailModel
     {
-        public int ParkId { get; set; }
+        public int TrailId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public double LengthInMiles { get; set; }
+        public int EstimatedWalkTimeinMinutes { get; set; }
         public string Image { get; set; }
 
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int Zoom { get; set; }
 
-        public List<TrailModel> Trails { get; set; }
+        public PanoramicModel TrailHead { get; set; }
+        public List<PanoramicModel> PointsOfInterest { get; set; }
     }
 }
