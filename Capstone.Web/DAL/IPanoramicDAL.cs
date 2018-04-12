@@ -11,5 +11,6 @@ namespace Capstone.Web.DAL
     {
         PanoramicModel GetPanoramicById(int id);
         List<PanoramicModel> GetPanoramicsByTrailId(int trailId);
+        List<PanoramicModel> GetAllPanoramics();
     }
 }
