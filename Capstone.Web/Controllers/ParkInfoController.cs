@@ -11,18 +11,20 @@ namespace Capstone.Web.Controllers
 {
     public class ParkInfoController : ApiController
     {
-        IParkDAL dal;
+        IParkDAL parkDAL;
+        ITrailDAL trailDAL;
 
-        public ParkInfoController(IParkDAL dal)
+        public ParkInfoController(IParkDAL parkDAL, ITrailDAL trailDAL)
         {
-            this.dal = dal;
+            this.parkDAL = parkDAL;
+            this.trailDAL = trailDAL;
         }
 
         [HttpGet]
         [Route("api/parks")]
         public IHttpActionResult GetParks()
         {
-            List<ParkModel> parks = dal.GetAllParks();
+            List<ParkModel> parks = parkDAL.GetAllParks();
 
             return Ok(parks);
         }
@@ -31,7 +33,8 @@ namespace Capstone.Web.Controllers
         [Route("api/park/{name}")]
         public IHttpActionResult GetParkByParkName(string name)
         {
-            ParkModel park = dal.GetParkByParkName(name);
+            ParkModel park = parkDAL.GetParkByParkName(name);
+            park.Trails = trailDAL.GetTrailsByParkName(name);
 
             return Ok(park);
         }
