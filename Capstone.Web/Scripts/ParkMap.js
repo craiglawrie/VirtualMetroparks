@@ -48,6 +48,12 @@ function initMap() {
 
 function initParkMap() {
     let parkName = window.location.pathname.substring(27);
+
+
+    let marker = [];
+    let trailDetails = {};
+    let poiDetails = {};
+    let i = 0;
     fetch(domainAddress + `/api/park/${parkName}`)
         .then(response => response.json())
         .then(park => {
@@ -62,14 +68,12 @@ function initParkMap() {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            // markers from api
-            let marker = [];
-            let parkDetails = {};
+            // markers for each Trail Head
             park.Trails.forEach(function (trail) {
                 trailDetails.name = trail.Name;
-                trailDetails.lat = trail.Latitude;
-                trailDetails.lng = trail.Longitude;
-                trailDetails.link = domainAddress + `/VirtualTrails/ViewTrail/${trail.TrailHeadId}`;
+                trailDetails.lat = trail.TrailHead.Latitude;
+                trailDetails.lng = trail.TrailHead.Longitude;
+                trailDetails.link = domainAddress + `/VirtualTrails/ViewTrail/?trailName=${trail.Name}&panoramicId=${trail.TrailHead.PanoramicId}`;
 
                 marker[i] = new google.maps.Marker({
                     position: trailDetails,
@@ -83,6 +87,29 @@ function initParkMap() {
                 })
 
                 i++;
+            });
+
+            // markers for each Trail Head
+            park.Trails.forEach(function (trail) {
+                trail.PointsOfInterest.forEach(function (pointOfInterest) {
+                    poiDetails.name = `Point of Interest on ${trail.Name}`;
+                    poiDetails.lat = pointOfInterest.Latitude;
+                    poiDetails.lng = pointOfInterest.Longitude;
+                    poiDetails.link = domainAddress + `/VirtualTrails/ViewTrail/?trailName=${trail.Name}&panoramicId=${pointOfInterest.PanoramicId}`;
+
+                    marker[i] = new google.maps.Marker({
+                        position: poiDetails,
+                        title: poiDetails.name,
+                        map: map,
+                        destinationLink: poiDetails.link
+                    });
+
+                    google.maps.event.addListener(marker[i], 'click', function () {
+                        window.location.href = this.destinationLink;
+                    })
+
+                    i++;
+                });
             });
         });
 

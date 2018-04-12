@@ -13,9 +13,7 @@ namespace Capstone.Web.Models
         public double LengthInMiles { get; set; }
         public int EstimatedWalkTimeinMinutes { get; set; }
         public string Image { get; set; }
-
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        
         public int Zoom { get; set; }
 
         public PanoramicModel TrailHead { get; set; }

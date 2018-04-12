@@ -10,7 +10,7 @@ namespace Capstone.Web.DAL
     {
         public PanoramicModel GetPanoramicById(int id)
         {
-            throw new NotImplementedException();
+            return panoramics[id];
         }
 
         public List<PanoramicModel> GetPanoramicsByTrailId(int trailId)
@@ -20,6 +20,7 @@ namespace Capstone.Web.DAL
 
         private Dictionary<int, PanoramicModel> panoramics = new Dictionary<int, PanoramicModel>()
         {
+            {0, new PanoramicModel() { } },
             {1, new PanoramicModel() { } },
             {2, new PanoramicModel() { } }
         };
