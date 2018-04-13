@@ -48,10 +48,9 @@ namespace Capstone.Web.Controllers
             List<PanoramicModel> panoramics = panoramicDAL.GetAllPanoramics();
 
             if (!trails.Select(trail => trail.Name).Contains(trailName) ||
-                panoramics.FirstOrDefault(panoramic => panoramic.PanoramicId == panoramicId)== null)
+                (panoramics.FirstOrDefault(panoramic => panoramic.PanoramicId == panoramicId) == null) && panoramicId != null)
             {
                 return new HttpStatusCodeResult(404);
-
             } 
 
             if (panoramicId != null)
@@ -65,9 +64,6 @@ namespace Capstone.Web.Controllers
             else
             {
                 return new HttpStatusCodeResult(404);
-                
-
-                //image = trailDAL.GetTrailByTrailName("Henry Church Rock Loop").TrailHead;
             }
 
             return View("ViewTrail", image);
