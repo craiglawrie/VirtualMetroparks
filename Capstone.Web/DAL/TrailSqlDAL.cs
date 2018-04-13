@@ -109,5 +109,57 @@ namespace Capstone.Web.DAL
                 Image = Convert.ToString(reader["trail_image"])
             };
         }
+
+        public List<TrailModel> GetTrailsByParkId(int id)
+        {
+            List<TrailModel> trails = new List<TrailModel>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"", conn);
+                    cmd.Parameters.AddWithValue("@parkId", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        TrailModel trail = MapRowToTrail(reader);
+
+                        trails.Add(trail);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return trails;
+        }
+
+        public List<TrailModel> GetTrailsByParkName(string name)
+        {
+            List<TrailModel> trails = new List<TrailModel>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"", conn);
+                    cmd.Parameters.AddWithValue("@parkName", name);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        TrailModel trail = MapRowToTrail(reader);
+
+                        trails.Add(trail);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return trails;
+        }
     }
 }
