@@ -36,7 +36,7 @@ namespace Capstone.Web
             kernel.Bind<IParkDAL>().To<FakeParkDAL>();
             kernel.Bind<ITrailDAL>().To<FakeTrailDAL>();
             kernel.Bind<IPanoramicDAL>().To<FakePanoramicDAL>();
-
+            kernel.Bind<ITrailDAL>().To<TrailSqlDAL>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 
