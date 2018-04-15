@@ -33,7 +33,7 @@ namespace Capstone.Tests
                 TrailSqlDALTests.InsertFakeTrail(21, 19, "test", "Beautiful", "image");
                 TrailSqlDAL testClass = new TrailSqlDAL(connection);
                 TrailModel trail = testClass.GetTrailById(21);
-                Assert.AreEqual(21, trail.ParkId);
+                Assert.AreEqual(21, trail.TrailId);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Capstone.Tests
             {
                 TrailSqlDALTests.InsertFakeTrail(21, 19, "test", "Beautiful", "image");
                 TrailSqlDAL testClass = new TrailSqlDAL(connection);
-                TrailModel trail = testClass.GetTrailByName("test");
+                TrailModel trail = testClass.GetTrailByTrailName("test");
                 Assert.AreEqual("test", trail.Name);
             }
         }

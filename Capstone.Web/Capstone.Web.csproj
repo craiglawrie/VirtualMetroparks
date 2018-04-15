@@ -199,8 +199,13 @@
     <Compile Include="DAL\FakeTrailDAL.cs" />
     <Compile Include="DAL\IPanoramicDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
+    <Compile Include="DAL\IParkImagesDAL.cs" />
     <Compile Include="DAL\ITrailDAL.cs" />
+    <Compile Include="DAL\ITrailImagesDAL.cs" />
+    <Compile Include="DAL\PanoramicSqlDAL.cs" />
+    <Compile Include="DAL\ParkImagesSqlDAL.cs" />
     <Compile Include="DAL\ParkSqlDAL.cs" />
+    <Compile Include="DAL\TrailImagesSqlDAL.cs" />
     <Compile Include="DAL\TrailSqlDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,7 +213,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PanoramicModel.cs" />
+    <Compile Include="Models\ParkImagesModel.cs" />
     <Compile Include="Models\ParkModel.cs" />
+    <Compile Include="Models\TrailImagesModel.cs" />
     <Compile Include="Models\TrailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
