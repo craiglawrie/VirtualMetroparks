@@ -51,7 +51,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT park.park_id FROM parks WHERE park.park_id = @id ORDER BY ASC;", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM parks WHERE parks.park_id = @id;", conn);
                     cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
@@ -80,7 +80,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT park.park_name FROM parks WHERE park.park_name = @name;", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM parks WHERE parks.park_name = @name;", conn);
                     cmd.Parameters.AddWithValue("@name", name);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())

@@ -25,7 +25,7 @@ namespace Capstone.Web.DAL
                     try
                     {
                         conn.Open();
-                        SqlCommand cmd = new SqlCommand(@"SELECT * FROM trails INNER JOIN parks ON trails.park_id = park.park_id ORDER BY trail_name;", conn);
+                        SqlCommand cmd = new SqlCommand(@"SELECT * FROM trails;", conn);
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
@@ -50,7 +50,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT trail.trail_id FROM trails INNER JOIN parks ON trails.park_id = park.park_id WHERE trail.trail_id = @id;", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trails WHERE trails.trail_id = @id;", conn);
                     cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
@@ -79,7 +79,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT trail.trail_name FROM trails INNER JOIN parks ON trails.park_id = park.park_id WHERE trail.trail_name = @name;", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trails WHERE trails.trail_name = @name;", conn);
                     cmd.Parameters.AddWithValue("@name", name);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
@@ -118,7 +118,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trails WHERE trails.park_id = @parkId", conn);
                     cmd.Parameters.AddWithValue("@parkId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -144,7 +144,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT trails.* FROM trails INNER JOIN parks ON trails.park_id = parks.park_id WHERE parks.park_name = @name", conn);
                     cmd.Parameters.AddWithValue("@parkName", name);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
