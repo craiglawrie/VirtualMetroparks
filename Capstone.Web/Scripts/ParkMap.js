@@ -3,9 +3,12 @@ let domainAddress = 'http://localhost:55900';
 
 let hostname = window.location.hostname;
 
-if (hostname !== "localhost") {
-    domainAddress = hostname;
+window.onload = function () {
+    if (hostname !== "localhost") {
+        domainAddress = hostname;
+    }
 }
+
 
 function initMap() {
     // location list
@@ -160,7 +163,7 @@ function MakeTour() {
             });
 
             pannellum.viewer('panorama', viewerParameters);
-            
+
         });
 }
 
