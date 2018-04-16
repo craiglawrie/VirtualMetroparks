@@ -13,5 +13,6 @@ namespace Capstone.Web.DAL
         TrailModel GetTrailByTrailName(string name);
         List<TrailModel> GetTrailsByParkId(int id);
         List<TrailModel> GetTrailsByParkName(string name);
+        List<TrailModel> GetAllTrails();
     }
 }

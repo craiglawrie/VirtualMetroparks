@@ -50,6 +50,23 @@ textarea {
     body {
         padding-top: 300px;
     }
+
+    #entrance-text {
+
+    }
+
+    .home-title-top {
+    }
+
+    .home-p-top {
+    }
+
+    .home-title-second {
+    }
+
+    .home-p-second {
+    }
+
 }
 
 .left-header {
@@ -100,54 +117,67 @@ h2 {
 
 /* INDEX/HOME LAYOUT *************************************************************/
 .background-top-image {
-    z-index: 1400;
+    z-index: -1;
     background-size: cover;
     background-position: center;
-    position: absolute;
-    top: 200;
+    position: relative;
+    top: 20rem;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: -10rem;
+    grid-area: home-top;
 }
 
 .background-bottom-image {
-    z-index: 1400;
+    z-index: -1;
     background-size: cover;
     background-position: center;
     position: absolute;
-    top: 700px;
+    top: 70rem;
     right: 0;
     bottom: 0;
     left: 0;
+    grid-area: home-second;
 }
 
 @media (max-width: 768px) {
+    #wrapper {
+        grid-template-rows: 1fr 1fr;
+        display: grid;
+        grid-template-areas: 
+            'home-top' 
+            'home-second';
+    }
+
+
+
+
     .background-top-image {
-        top: 500px;
+        top: 50rem;
     }
     .background-bottom-image {
-        top: 1000px;
+        top: 100rem;
     }
 }
 
 #entrance-text {
-    
-    line-height: 125%;
+    left: 3em;
+    top: 0em;
     color: black;
     font-size: 8em;
     font-family: Nimbus_Sans_Becker_PBla, monospace;
+    grid-area: home-top;
 }
 
 .home-title-top {
     left: 1.2em;
     top: 2.5em;
-    margin: 0 auto;
-    position: absolute;
-    z-index: 1410;
+    z-index: 1;
     line-height: 125%;
     color: mintcream;
     font-size: 8em;
     font-family: Nimbus_Sans_Becker_PBla, monospace;
+    grid-area: home-top;
 }
 
 .home-p-top {
@@ -155,12 +185,13 @@ h2 {
     top: 11em;
     margin: 0 auto;
     position: absolute;
-    z-index: 1410;
+    z-index: 1;
     line-height: 125%;
     color: mintcream;
     text-shadow: 3px .2px rgb(28, 86, 48);
     font-size: 3em;
     font-family: Nimbus_Sans_Becker_PBla, normal;
+    grid-area: home-top;
 }
 
 .home-title-second {
@@ -173,6 +204,7 @@ h2 {
     color: mintcream;
     font-size: 8em;
     font-family: Nimbus_Sans_Becker_PBla, monospace;
+    grid-area: home-second;
 }
 
 .home-p-second {
@@ -186,19 +218,19 @@ h2 {
     text-shadow: 3px .2px black;
     font-size: 3em;
     font-family: Nimbus_Sans_Becker_PBla, normal;
+    grid-area: home-second;
 }
-
 
 
 
 /* PARK/TRAIL LAYOUT *************************************************************/
-#map {
-    height: 400px;
-    width: 90%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+    #map {
+        height: 400px;
+        width: 90%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
 .park-list-description img {
     width: 200px;
