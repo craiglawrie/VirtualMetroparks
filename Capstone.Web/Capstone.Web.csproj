@@ -215,6 +215,7 @@
     <Compile Include="Models\PanoramicModel.cs" />
     <Compile Include="Models\ParkImagesModel.cs" />
     <Compile Include="Models\ParkModel.cs" />
+    <Compile Include="Models\TourConnection.cs" />
     <Compile Include="Models\TrailImagesModel.cs" />
     <Compile Include="Models\TrailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

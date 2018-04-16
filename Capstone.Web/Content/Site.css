@@ -264,3 +264,9 @@ h2 {
 footer {
     text-align: center;
 }
+
+/* Style for view trail*/
+#panorama {
+    width: 800px;
+    height: 600px;
+}

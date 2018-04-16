@@ -13,5 +13,6 @@ namespace Capstone.Web.Models
         public double Longitude { get; set; }
         public int NextPanoramic { get; set; }
         public int PrevPanoramic { get; set; }
+        public List<TourConnection> Connections { get; set; }
     }
 }

@@ -38,5 +38,14 @@ namespace Capstone.Web.Controllers
 
             return Ok(park);
         }
+
+        [HttpGet]
+        [Route("api/trail/{trailName}")]
+        public IHttpActionResult GetTrailByTrailName(string trailName)
+        {
+            TrailModel trail = trailDAL.GetTrailByTrailName(trailName);
+
+            return Ok(trail);
+        }
     }
 }
