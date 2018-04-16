@@ -23,6 +23,11 @@ namespace Capstone.Web.DAL
             return panoramics.Values.ToList();
         }
 
+        public List<PanoramicModel> GetPanoramicsByTrailName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         private Dictionary<int, PanoramicModel> panoramics = new Dictionary<int, PanoramicModel>()
         {
             {0, new PanoramicModel() { PanoramicId = 0, Latitude = 41.416917, Longitude = -81.415312 } },

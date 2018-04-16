@@ -50,7 +50,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT trail_images.trail_images_id FROM trail_images INNER JOIN trails ON trail_images.trails_id = trails.trails_id WHERE trail_images.trail_images_id = @id;", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trail_images WHERE trail_images.trail_image_id = @id;", conn);
                     cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
@@ -79,8 +79,8 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trail_images INNER JOIN trails ON trail_images.trail_id = trails.trail_id;", conn);
-                    cmd.Parameters.AddWithValue("@parkId", trailId);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trail_images WHERE trail_images.trail_id = @trailId;", conn);
+                    cmd.Parameters.AddWithValue("@trailId", trailId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
