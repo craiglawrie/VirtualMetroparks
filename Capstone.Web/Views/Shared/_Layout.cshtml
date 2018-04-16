@@ -14,13 +14,13 @@
     <script type="text/javascript">
         let domainAddress;
 
-        if ("@Request.Url.IsDefaultPort" != "False") {
+        if ("@Request.Url.Host" != "localhost") {
             domainAddress = "@(Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host)";
         }
         else {
             domainAddress = "@(Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + ":" + Request.Url.Port)";
         }
-        
+        console.log(domainAddress);
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
