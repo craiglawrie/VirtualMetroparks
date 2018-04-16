@@ -1,14 +1,4 @@
 ﻿
-let domainAddress = 'http://localhost:55900';
-
-let hostname = window.location.hostname;
-
-window.onload = function () {
-    if (hostname !== "localhost") {
-        domainAddress = hostname;
-    }
-}
-
 
 function initMap() {
     // location list

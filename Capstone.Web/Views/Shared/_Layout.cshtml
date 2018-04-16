@@ -8,9 +8,20 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/ParkMap.js"></script>
+    
 </head>
 <body>
+    <script type="text/javascript">
+        let domainAddress;
 
+        if ("@Request.Url.IsDefaultPort" != "False") {
+            domainAddress = "@(Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host)";
+        }
+        else {
+            domainAddress = "@(Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + ":" + Request.Url.Port)";
+        }
+        
+    </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div id="logo-header">
