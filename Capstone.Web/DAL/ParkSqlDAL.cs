@@ -102,12 +102,11 @@ namespace Capstone.Web.DAL
 
         private static ParkModel MapRowToPark(SqlDataReader reader)
         {
-            return new ParkModel
+            return new ParkModel()
             {
                 ParkId = Convert.ToInt32(reader["park_id"]),
                 Name = Convert.ToString(reader["park_name"]),
                 Description = Convert.ToString(reader["park_description"]),
-                Image = Convert.ToString(reader["park_image"]),
                 Latitude = Convert.ToDouble(reader["park_latitude"]),
                 Longitude = Convert.ToDouble(reader["park_longitude"]),
                 Zoom = Convert.ToInt32(reader["default_zoom"])

@@ -13,5 +13,8 @@ namespace Capstone.Web.DAL
         List<PanoramicModel> GetPanoramicsByTrailId(int trailId);
         List<PanoramicModel> GetAllPanoramics();
         List<PanoramicModel> GetPanoramicsByTrailName(string name);
+        PanoramicModel GetTrailHeadByTrailId(int trailId);
+        List<PanoramicModel> GetPointsOfInterestByTrailId(int trailId);
+        List<TourConnection> GetConnectionsByPanoramicId(int panoramicId);
     }
 }

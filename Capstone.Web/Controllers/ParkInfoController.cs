@@ -13,11 +13,13 @@ namespace Capstone.Web.Controllers
     {
         IParkDAL parkDAL;
         ITrailDAL trailDAL;
+        IPanoramicDAL panoramicDAL;
 
-        public ParkInfoController(IParkDAL parkDAL, ITrailDAL trailDAL)
+        public ParkInfoController(IParkDAL parkDAL, ITrailDAL trailDAL, IPanoramicDAL panoramicDAL)
         {
             this.parkDAL = parkDAL;
             this.trailDAL = trailDAL;
+            this.panoramicDAL = panoramicDAL;
         }
 
         [HttpGet]
@@ -35,6 +37,8 @@ namespace Capstone.Web.Controllers
         {
             ParkModel park = parkDAL.GetParkByParkName(parkName);
             park.Trails = trailDAL.GetTrailsByParkName(parkName);
+            park.Trails.ForEach(trail => trail.TrailHead = panoramicDAL.GetTrailHeadByTrailId(trail.TrailId));
+            park.Trails.ForEach(trail => trail.PointsOfInterest = panoramicDAL.GetPointsOfInterestByTrailId(trail.TrailId));
 
             return Ok(park);
         }
@@ -44,6 +48,8 @@ namespace Capstone.Web.Controllers
         public IHttpActionResult GetTrailByTrailName(string trailName)
         {
             TrailModel trail = trailDAL.GetTrailByTrailName(trailName);
+            trail.PanoramicsInTrail = panoramicDAL.GetPanoramicsByTrailName(trailName);
+            trail.PanoramicsInTrail.ForEach(panoramic => panoramic.Connections = panoramicDAL.GetConnectionsByPanoramicId(panoramic.PanoramicId));
 
             return Ok(trail);
         }

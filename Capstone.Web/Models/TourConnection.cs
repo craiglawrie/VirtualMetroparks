@@ -7,7 +7,7 @@ namespace Capstone.Web.Models
 {
     public class TourConnection
     {
-        public int Destination { get; set; }
+        public int DestinationId { get; set; }
         public int HotspotPitch { get; set; }
         public int HotspotYaw { get; set; }
         public int DestinationStartPitch { get; set; }

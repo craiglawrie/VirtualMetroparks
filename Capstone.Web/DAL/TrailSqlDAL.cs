@@ -99,17 +99,6 @@ namespace Capstone.Web.DAL
             return trail;
         }
 
-        private static TrailModel MapRowToTrail(SqlDataReader reader)
-        {
-            return new TrailModel
-            {
-                TrailId = Convert.ToInt32(reader["trail_id"]),
-                Name = Convert.ToString(reader["trail_name"]),
-                Description = Convert.ToString(reader["trail_description"]),
-                Image = Convert.ToString(reader["trail_image"])
-            };
-        }
-
         public List<TrailModel> GetTrailsByParkId(int id)
         {
             List<TrailModel> trails = new List<TrailModel>();
@@ -144,7 +133,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT trails.* FROM trails INNER JOIN parks ON trails.park_id = parks.park_id WHERE parks.park_name = @name", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT trails.* FROM trails INNER JOIN parks ON trails.park_id = parks.park_id WHERE parks.park_name = @parkName", conn);
                     cmd.Parameters.AddWithValue("@parkName", name);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -160,6 +149,16 @@ namespace Capstone.Web.DAL
                 throw;
             }
             return trails;
+        }
+
+        private static TrailModel MapRowToTrail(SqlDataReader reader)
+        {
+            return new TrailModel
+            {
+                TrailId = Convert.ToInt32(reader["trail_id"]),
+                Name = Convert.ToString(reader["trail_name"]),
+                Description = Convert.ToString(reader["trail_description"])
+            };
         }
     }
 }

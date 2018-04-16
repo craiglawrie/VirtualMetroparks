@@ -11,8 +11,6 @@ namespace Capstone.Web.Models
         public string ImageAddress { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public int NextPanoramic { get; set; }
-        public int PrevPanoramic { get; set; }
         public List<TourConnection> Connections { get; set; }
     }
 }
