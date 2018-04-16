@@ -42,8 +42,6 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ViewTrail(string trailName, int? panoramicId)
         {
-            PanoramicModel image;
-
             List<TrailModel> trails = trailDAL.GetAllTrails();
             List<PanoramicModel> panoramics = panoramicDAL.GetAllPanoramics();
 
@@ -53,20 +51,12 @@ namespace Capstone.Web.Controllers
                 return new HttpStatusCodeResult(404);
             } 
 
-            if (panoramicId != null)
+            if (panoramicId == null)
             {
-                image = panoramicDAL.GetPanoramicById((int)panoramicId);
-            }
-            else if (trailName != null)
-            {
-                image = trailDAL.GetTrailByTrailName(trailName).TrailHead;
-            }
-            else
-            {
-                return new HttpStatusCodeResult(404);
+                return RedirectToAction("ViewTrail", new { trailName = trailName, panoramicId = trails.First(trail => trail.Name == trailName).TrailHead.PanoramicId });
             }
 
-            return View("ViewTrail", image);
+            return View("ViewTrail");
         }
     }
 }
