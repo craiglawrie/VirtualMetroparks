@@ -197,11 +197,15 @@
     <Compile Include="DAL\FakePanoramicDAL.cs" />
     <Compile Include="DAL\FakeParkDAL.cs" />
     <Compile Include="DAL\FakeTrailDAL.cs" />
+    <Compile Include="DAL\ILastSeenImagesDAL.cs" />
+    <Compile Include="DAL\ILastSeenVideosDAL.cs" />
     <Compile Include="DAL\IPanoramicDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
     <Compile Include="DAL\IParkImagesDAL.cs" />
     <Compile Include="DAL\ITrailDAL.cs" />
     <Compile Include="DAL\ITrailImagesDAL.cs" />
+    <Compile Include="DAL\LastSeenImagesSqlDAL.cs" />
+    <Compile Include="DAL\LastSeenVideosSqlDAL.cs" />
     <Compile Include="DAL\PanoramicSqlDAL.cs" />
     <Compile Include="DAL\ParkImagesSqlDAL.cs" />
     <Compile Include="DAL\ParkSqlDAL.cs" />
@@ -211,6 +215,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\LastSeenImagesModel.cs" />
+    <Compile Include="Models\LastSeenVideosModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PanoramicModel.cs" />
     <Compile Include="Models\ParkImagesModel.cs" />
