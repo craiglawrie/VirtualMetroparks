@@ -134,6 +134,33 @@ namespace Capstone.Web.DAL
             return lastSeenVideos;
         }
 
+        public List<LastSeenVideosModel> GetLastSeenVideosByPanoramicId(int panoramicId)
+        {
+            List<LastSeenVideosModel> lastSeenVideos = new List<LastSeenVideosModel>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM last_seen_videos                                                         
+                                                      WHERE last_seen_videos.panoramic_id = @panoramicId;", conn);
+                    cmd.Parameters.AddWithValue("@panoramicId", panoramicId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        LastSeenVideosModel lastSeenVideo = MapRowToLastSeenVideos(reader);
+
+                        lastSeenVideos.Add(lastSeenVideo);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return lastSeenVideos;
+        }
+
         private static LastSeenVideosModel MapRowToLastSeenVideos(SqlDataReader reader)
         {
             return new LastSeenVideosModel

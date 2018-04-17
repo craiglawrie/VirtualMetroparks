@@ -152,6 +152,8 @@ h2 {
 
 
 
+
+
     .background-top-image {
         top: 50rem;
     }
@@ -270,3 +272,10 @@ footer {
     width: 800px;
     height: 600px;
 }
+
+@media (min-width: 768px) {
+    #container {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        grid-template-areas: 'home-top' 'home-second';
+    }

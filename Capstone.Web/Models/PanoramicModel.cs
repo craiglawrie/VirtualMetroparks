@@ -13,5 +13,7 @@ namespace Capstone.Web.Models
         public double Longitude { get; set; }
         public List<TourConnection> Connections { get; set; }
         public List<BackgroundSoundClip> BackgroundSoundClips { get; set; }
+        public List<LastSeenImagesModel> GetLastSeenImagesByPanoramicId { get; set; }
+        public List<LastSeenVideosModel> GetLastSeenVideosByPanoramicId { get; set; }
     }
 }
