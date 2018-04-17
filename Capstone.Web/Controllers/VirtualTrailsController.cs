@@ -16,11 +16,13 @@ namespace Capstone.Web.Controllers
         ILastSeenImagesDAL lastSeenImagesDAL;
         ILastSeenVideosDAL lastSeenVideosDAL;
 
-        public VirtualTrailsController(IParkDAL parkDAL, ITrailDAL trailDAL, IPanoramicDAL panoramicDAL)
+        public VirtualTrailsController(IParkDAL parkDAL, ITrailDAL trailDAL, IPanoramicDAL panoramicDAL, ILastSeenImagesDAL lastSeenImagesDAL, ILastSeenVideosDAL lastSeenVideosDAL)
         {
             this.parkDAL = parkDAL;
             this.trailDAL = trailDAL;
             this.panoramicDAL = panoramicDAL;
+            this.lastSeenImagesDAL = lastSeenImagesDAL;
+            this.lastSeenVideosDAL = lastSeenVideosDAL;
         }
 
         public ActionResult Index()

@@ -1,7 +1,9 @@
-﻿
+﻿@model List<Capstone.Web.Models.LastSeenImagesModel>
+@model List<Capstone.Web.Models.LastSeenVideosModel>
 @{
     ViewBag.Title = "ViewTrail";
 }
+
 <div id="container">
     <h2>ViewTrail</h2>
 
@@ -11,4 +13,18 @@
 
     <div id="panorama"></div>
     <script type="text/javascript">MakeTour();</script>
+
+    <div id="last-seen">
+        @foreach (var item in Model)
+        {
+
+        }
+        <div class="last-seen-image">
+
+        </div>
+
+        <div class="last-seen-text">
+
+        </div>
+    </div>
 </div>

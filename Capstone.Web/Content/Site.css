@@ -267,10 +267,22 @@ footer {
     text-align: center;
 }
 
-/* Style for view trail*/
+/* Style for view trail**************************************************************/
 #panorama {
     width: 800px;
     height: 600px;
+}
+
+#last-seen {
+
+}
+
+.last-seen-text {
+
+}
+
+.last-seen-image {
+
 }
 
 @media (min-width: 768px) {
@@ -279,3 +291,4 @@ footer {
         display: grid;
         grid-template-areas: 'home-top' 'home-second';
     }
+}
