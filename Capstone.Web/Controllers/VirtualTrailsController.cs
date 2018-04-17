@@ -13,6 +13,8 @@ namespace Capstone.Web.Controllers
         IParkDAL parkDAL;
         ITrailDAL trailDAL;
         IPanoramicDAL panoramicDAL;
+        ILastSeenImagesDAL lastSeenImagesDAL;
+        ILastSeenVideosDAL lastSeenVideosDAL;
 
         public VirtualTrailsController(IParkDAL parkDAL, ITrailDAL trailDAL, IPanoramicDAL panoramicDAL)
         {
@@ -45,6 +47,8 @@ namespace Capstone.Web.Controllers
             List<TrailModel> trails = trailDAL.GetAllTrails();
             trails.ForEach(trail => trail.TrailHead = panoramicDAL.GetTrailHeadByTrailId(trail.TrailId));
             List<PanoramicModel> panoramics = panoramicDAL.GetAllPanoramics();
+            List<LastSeenImagesModel> lastSeenImages = lastSeenImagesDAL.GetAllLastSeenImages();
+            List<LastSeenVideosModel> lastSeenVideos = lastSeenVideosDAL.GetAllLastSeenVideos();
 
             if (!trails.Select(trail => trail.Name).Contains(trailName) ||
                 (panoramics.FirstOrDefault(panoramic => panoramic.PanoramicId == panoramicId) == null) && panoramicId != null)
