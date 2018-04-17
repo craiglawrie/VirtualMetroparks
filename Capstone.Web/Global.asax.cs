@@ -41,6 +41,8 @@ namespace Capstone.Web
             kernel.Bind<IParkDAL>().To<ParkSqlDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<ITrailDAL>().To<TrailSqlDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<IPanoramicDAL>().To<PanoramicSqlDAL>().WithConstructorArgument("connectionString", connectionString);
+            kernel.Bind<ILastSeenImagesDAL>().To<LastSeenImagesSqlDAL>().WithConstructorArgument("connectionString", connectionString);
+            kernel.Bind<ILastSeenVideosDAL>().To<LastSeenVideosSqlDAL>().WithConstructorArgument("connectionString", connectionString);
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 
