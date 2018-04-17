@@ -238,6 +238,7 @@
     <Content Include="Content\images\map-preview-og-image.png" />
     <Content Include="Content\images\metropark 2.png" />
     <Content Include="Content\images\MetroParkLogo.jpg" />
+    <Content Include="Scripts\LastSeen.js" />
     <Content Include="Scripts\ParkMap.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
