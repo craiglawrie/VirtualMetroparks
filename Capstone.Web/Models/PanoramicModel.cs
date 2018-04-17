@@ -12,5 +12,6 @@ namespace Capstone.Web.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public List<TourConnection> Connections { get; set; }
+        public List<BackgroundSoundClip> BackgroundSoundClips { get; set; }
     }
 }

@@ -50,7 +50,9 @@ namespace Capstone.Web.Controllers
             TrailModel trail = trailDAL.GetTrailByTrailName(trailName);
             trail.PanoramicsInTrail = panoramicDAL.GetPanoramicsByTrailName(trailName);
             trail.PanoramicsInTrail.ForEach(panoramic => panoramic.Connections = panoramicDAL.GetConnectionsByPanoramicId(panoramic.PanoramicId));
-
+            trail.PanoramicsInTrail.ForEach(panoramic => panoramic.BackgroundSoundClips = panoramicDAL.GetAllBackgroundSoundClips());
+            trail.TrailHead = panoramicDAL.GetTrailHeadByTrailId(trail.TrailId);
+            trail.TrailHead = trail.PanoramicsInTrail.First(panoramic => panoramic.PanoramicId == trail.TrailHead.PanoramicId);
             return Ok(trail);
         }
     }

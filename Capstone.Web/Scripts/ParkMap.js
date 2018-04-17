@@ -113,13 +113,15 @@ function initParkMap() {
 
 }
 
+var audio;
+
 function MakeTour() {
     let trailName = getParameterByName("trailName");
     let panoramicId = getParameterByName("panoramicId");
 
     fetch(domainAddress + `/api/trail/${trailName}`)
         .then(response => response.json())
-        .then(trail => {
+        .then(trail => {           
             let viewerParameters = {};
             viewerParameters["default"] = {
                 "firstScene": panoramicId + "",
@@ -130,6 +132,7 @@ function MakeTour() {
             viewerParameters["scenes"] = {};
 
             trail.PanoramicsInTrail.forEach(panoramic => {
+                console.log(panoramic.BackgroundSoundClips);
                 panoramicHotSpots = [];
                 panoramic.Connections.forEach(connection => {
                     let hotSpot = {
@@ -154,6 +157,12 @@ function MakeTour() {
 
             pannellum.viewer('panorama', viewerParameters);
 
+            if (trail.TrailHead.BackgroundSoundClips.length > 0) {
+                let clipSelection = Math.floor(Math.random() * Math.floor(trail.TrailHead.BackgroundSoundClips.length));
+                let audioFile = trail.TrailHead.BackgroundSoundClips[clipSelection].AudioAddress;
+                audio = new Audio(audioFile);
+                audio.play();
+            }
         });
 }
 

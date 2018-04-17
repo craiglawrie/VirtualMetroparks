@@ -113,14 +113,14 @@ namespace Capstone.Web.DAL
                                                       WHERE trails.trail_name = @trailName;", conn);
                     cmd.Parameters.AddWithValue("@trailName", name);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         PanoramicModel panoramic = MapRowToPanoramic(reader);
                         panoramics.Add(panoramic);
                     }
                 }
             }
-            catch(SqlException)
+            catch (SqlException)
             {
                 throw;
             }
@@ -194,7 +194,7 @@ namespace Capstone.Web.DAL
 
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(@"SELECT pl.* 
@@ -204,7 +204,7 @@ namespace Capstone.Web.DAL
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         TourConnection connection = new TourConnection()
                         {
@@ -226,6 +226,79 @@ namespace Capstone.Web.DAL
             return connections;
         }
 
+        public List<BackgroundSoundClip> GetBackgroundSoundClipsByPanoramicId(int panoramicId)
+        {
+            List<BackgroundSoundClip> backgroundSoundClips = new List<BackgroundSoundClip>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"SELECT ts.* 
+                                                      FROM trail_sounds ts 
+                                                      INNER JOIN trail_sounds_associative tsa ON tsa.trail_sound_id = ts.trail_sound_id 
+                                                      WHERE tsa.panoramic_image_id = @panoramicId", conn);
+                    cmd.Parameters.AddWithValue("@panoramicId", panoramicId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        BackgroundSoundClip soundClip = new BackgroundSoundClip()
+                        {
+                            AudioId = Convert.ToInt32(reader["trail_sound_id"]),
+                            AudioAddress = Convert.ToString(reader["trail_sound_file"])
+
+                        };
+
+                        backgroundSoundClips.Add(soundClip);
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+
+            return backgroundSoundClips;
+        }
+
+        public List<BackgroundSoundClip> GetAllBackgroundSoundClips()
+        {
+            List<BackgroundSoundClip> backgroundSoundClips = new List<BackgroundSoundClip>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trail_sounds", conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        BackgroundSoundClip soundClip = new BackgroundSoundClip()
+                        {
+                            AudioId = Convert.ToInt32(reader["trail_sound_id"]),
+                            AudioAddress = Convert.ToString(reader["trail_sound_file"])
+
+                        };
+
+                        backgroundSoundClips.Add(soundClip);
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+
+            return backgroundSoundClips;
+            
+        }
+
         private static PanoramicModel MapRowToPanoramic(SqlDataReader reader)
         {
             return new PanoramicModel
@@ -236,5 +309,7 @@ namespace Capstone.Web.DAL
                 Longitude = Convert.ToDouble(reader["image_longitude"])
             };
         }
+
+       
     }
 }

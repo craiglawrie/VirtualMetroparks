@@ -16,5 +16,7 @@ namespace Capstone.Web.DAL
         PanoramicModel GetTrailHeadByTrailId(int trailId);
         List<PanoramicModel> GetPointsOfInterestByTrailId(int trailId);
         List<TourConnection> GetConnectionsByPanoramicId(int panoramicId);
+        List<BackgroundSoundClip> GetBackgroundSoundClipsByPanoramicId(int panoramicId);
+        List<BackgroundSoundClip> GetAllBackgroundSoundClips();
     }
 }
