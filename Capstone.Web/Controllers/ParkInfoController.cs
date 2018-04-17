@@ -55,5 +55,14 @@ namespace Capstone.Web.Controllers
             trail.TrailHead = trail.PanoramicsInTrail.First(panoramic => panoramic.PanoramicId == trail.TrailHead.PanoramicId);
             return Ok(trail);
         }
+
+        [HttpGet]
+        [Route("api/panoramic/{panoramicId}")]
+        public IHttpActionResult GetPanoramicById(int panoramicId)
+        {
+            PanoramicModel panoramic = panoramicDAL.GetPanoramicById(panoramicId);
+            panoramic.BackgroundSoundClips = panoramicDAL.GetBackgroundSoundClipsByPanoramicId(panoramicId);
+            return Ok(panoramic);
+        }
     }
 }

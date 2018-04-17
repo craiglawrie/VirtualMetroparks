@@ -171,9 +171,9 @@ namespace Capstone.Web.DAL
                 Title = Convert.ToString(reader["title"]),
                 Pitch = Convert.ToInt32(reader["pitch"]),
                 Yaw = Convert.ToInt32(reader["yaw"]),
-                HasSound = Convert.ToBoolean(reader["has_sound"]),
-                Duration = Convert.ToDouble(reader["duration"]),
-                Volume = Convert.ToInt32(reader["volume"])
+                HasSound = Convert.ToBoolean((reader["has_sound"] as bool?) ?? false),
+                Duration = Convert.ToDouble(reader["duration"] as double? ?? 0),
+                Volume = Convert.ToInt32(reader["volume"] as int? ?? 0)
             };
         }
     }

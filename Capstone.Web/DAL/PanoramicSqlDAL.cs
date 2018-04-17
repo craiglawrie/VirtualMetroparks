@@ -51,7 +51,7 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM panoramic_images WHERE panoramic_id = @id;", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM panoramic_images WHERE panoramic_image_id = @id;", conn);
                     cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
@@ -237,7 +237,8 @@ namespace Capstone.Web.DAL
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(@"SELECT ts.* 
                                                       FROM trail_sounds ts 
-                                                      INNER JOIN trail_sounds_associative tsa ON tsa.trail_sound_id = ts.trail_sound_id 
+                                                      INNER JOIN sound_categories sc ON ts.sound_category_id = sc.sound_category_id
+                                                      INNER JOIN trail_sounds_associative tsa ON tsa.sound_category_id = sc.sound_category_id 
                                                       WHERE tsa.panoramic_image_id = @panoramicId", conn);
                     cmd.Parameters.AddWithValue("@panoramicId", panoramicId);
 

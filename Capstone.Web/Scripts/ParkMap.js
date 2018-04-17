@@ -114,6 +114,7 @@ function initParkMap() {
 }
 
 var audio;
+var audioFile;
 
 function MakeTour() {
     let trailName = getParameterByName("trailName");
@@ -121,7 +122,7 @@ function MakeTour() {
 
     fetch(domainAddress + `/api/trail/${trailName}`)
         .then(response => response.json())
-        .then(trail => {           
+        .then(trail => {
             let viewerParameters = {};
             viewerParameters["default"] = {
                 "firstScene": panoramicId + "",
@@ -132,7 +133,7 @@ function MakeTour() {
             viewerParameters["scenes"] = {};
 
             trail.PanoramicsInTrail.forEach(panoramic => {
-                console.log(panoramic.BackgroundSoundClips);
+
                 panoramicHotSpots = [];
                 panoramic.Connections.forEach(connection => {
                     let hotSpot = {
@@ -141,7 +142,10 @@ function MakeTour() {
                         "type": "scene",
                         "sceneId": "" + connection.DestinationId,
                         "targetYaw": connection.DestinationStartYaw,
-                        "targetPitch": "same"
+                        "targetPitch": "same",
+                        "clickHandlerFunc": function () {
+                            setBackgroundAudioForNewPanoramic(connection.DestinationId);
+                        }
                     };
                     panoramicHotSpots.push(hotSpot);
                 });
@@ -157,13 +161,34 @@ function MakeTour() {
 
             pannellum.viewer('panorama', viewerParameters);
 
-            if (trail.TrailHead.BackgroundSoundClips.length > 0) {
-                let clipSelection = Math.floor(Math.random() * Math.floor(trail.TrailHead.BackgroundSoundClips.length));
-                let audioFile = trail.TrailHead.BackgroundSoundClips[clipSelection].AudioAddress;
-                audio = new Audio(audioFile);
-                audio.play();
+            setBackgroundAudioForNewPanoramic(panoramicId);
+
+            //if (trail.TrailHead.BackgroundSoundClips.length > 0) {
+            //    let clipSelection = Math.floor(Math.random() * Math.floor(trail.TrailHead.BackgroundSoundClips.length));
+            //    audioFile = trail.TrailHead.BackgroundSoundClips[clipSelection].AudioAddress;
+            //    audio = new Audio(audioFile);
+            //    audio.play();
+            //}
+        });
+}
+
+function setBackgroundAudioForNewPanoramic(destinationId) {
+    fetch(domainAddress + `/api/panoramic/${destinationId}`)
+        .then(response => response.json())
+        .then(panoramic => {
+           
+            if (panoramic.BackgroundSoundClips.map(function (soundClip) { return soundClip.AudioAddress }).includes(audioFile)) {
+                console.log("HelloWorld");
+            } else {
+                if (panoramic.BackgroundSoundClips.length > 0) {
+                    let clipSelection = Math.floor(Math.random() * Math.floor(panoramic.BackgroundSoundClips.length));
+                    audioFile = panoramic.BackgroundSoundClips[clipSelection].AudioAddress;
+                    audio = new Audio(audioFile);
+                    audio.play();
+                }
             }
         });
+
 }
 
 function getParameterByName(name, url) {
