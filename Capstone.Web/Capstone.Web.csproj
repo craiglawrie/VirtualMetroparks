@@ -217,6 +217,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BackgroundSoundClip.cs" />
     <Compile Include="Models\LastSeenImagesModel.cs" />
+    <Compile Include="Models\LastSeenModel.cs" />
     <Compile Include="Models\LastSeenVideosModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PanoramicModel.cs" />

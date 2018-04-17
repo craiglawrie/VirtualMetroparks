@@ -51,6 +51,11 @@ namespace Capstone.Web.Controllers
             List<PanoramicModel> panoramics = panoramicDAL.GetAllPanoramics();
             List<LastSeenImagesModel> lastSeenImages = lastSeenImagesDAL.GetAllLastSeenImages();
             List<LastSeenVideosModel> lastSeenVideos = lastSeenVideosDAL.GetAllLastSeenVideos();
+            LastSeenModel superModel = new LastSeenModel()
+                {
+                    Images = lastSeenImages,
+                    Videos = lastSeenVideos
+                };
 
             if (!trails.Select(trail => trail.Name).Contains(trailName) ||
                 (panoramics.FirstOrDefault(panoramic => panoramic.PanoramicId == panoramicId) == null) && panoramicId != null)
@@ -63,7 +68,7 @@ namespace Capstone.Web.Controllers
                 return RedirectToAction("ViewTrail", new { trailName = trailName, panoramicId = trails.First(trail => trail.Name == trailName).TrailHead.PanoramicId });
             }
 
-            return View("ViewTrail");
+            return View("ViewTrail", superModel);
         }
     }
 }
