@@ -43,6 +43,7 @@ namespace Capstone.Web.Controllers
         public ActionResult ViewTrail(string trailName, int? panoramicId)
         {
             List<TrailModel> trails = trailDAL.GetAllTrails();
+            trails.ForEach(trail => trail.TrailHead = panoramicDAL.GetTrailHeadByTrailId(trail.TrailId));
             List<PanoramicModel> panoramics = panoramicDAL.GetAllPanoramics();
 
             if (!trails.Select(trail => trail.Name).Contains(trailName) ||
