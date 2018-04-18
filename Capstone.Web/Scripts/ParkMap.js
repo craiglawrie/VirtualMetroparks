@@ -148,27 +148,37 @@ function MakeTour() {
                         }
                     };
                     panoramicHotSpots.push(hotSpot);
-
-                    console.log(panoramic.LastSeenImages);
+                    
                     panoramic.LastSeenImages.forEach(image => {
                         let hotSpot = {
                             "pitch": image.Pitch,
                             "yaw": image.Yaw,
                             "type": "info",
-                            "text": image.Title + "\n" + image.Description
-
+                            "text": image.Title + "\n" + image.Description,
+                            "clickHandlerFunc": function () {
+                                $.fancybox.open(`
+                                    <div>
+                                        <h2>`+image.Title+`</h2>
+                                        <img src="`+image.ImageAddress+`" />
+                                    </div> `);
+                            }
                         };
                         panoramicHotSpots.push(hotSpot);
                     });
-
-                    console.log(panoramic.LastSeenVideos);
+                    
                     panoramic.LastSeenVideos.forEach(video => {
                         let hotSpot = {
                             "pitch": video.Pitch,
                             "yaw": video.Yaw,
                             "type": "info",
-                            "text": video.Title + "\n" + video.Description
-
+                            "text": video.Title + "\n" + video.Description,
+                            "clickHandlerFunc": function () {
+                                $.fancybox.open(`
+                                    <div>
+                                        <h2>`+ video.Title + `</h2>
+                                        <iframe width="1000px" height="600px" src="`+ video.VideoAddress + `" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    </div> `);
+                            }
                         };
                         panoramicHotSpots.push(hotSpot);
                     });
@@ -207,6 +217,8 @@ function setBackgroundAudioForNewPanoramic(destinationId) {
 }
 
 function playAudio() {
+    audio.pause();
+    audio.currentTime = 0;
     audio.src = audioFile;
     audio.play();
     audio.addEventListener("ended", function () {
@@ -219,7 +231,6 @@ function getNewAudioFileFromArray(soundClips) {
         let clipSelection = Math.floor(Math.random() * Math.floor(soundClips.length));
         audioFile = soundClips[clipSelection];
     }
-    console.log(audioFile);
     return audioFile;
 }
 
