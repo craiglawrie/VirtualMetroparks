@@ -41,6 +41,7 @@ namespace Capstone.Web.Controllers
         {
             ParkModel park = parkDAL.GetParkByParkName(id);
             park.Trails = trailDAL.GetTrailsByParkName(id);
+            park.Trails.ForEach(trail => trail.Image = trailDAL.GetImageByTrailId(trail.TrailId));
 
             return View("ChooseTrail", park);
         }

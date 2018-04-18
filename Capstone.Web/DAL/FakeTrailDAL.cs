@@ -33,6 +33,11 @@ namespace Capstone.Web.DAL
             return trails.Values.ToList();
         }
 
+        public string GetImageByTrailId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         private Dictionary<int, TrailModel> trails = new Dictionary<int, TrailModel>()
         {
             {1, new TrailModel() {TrailId = 1, Name = "Blue Heron Trail", Description = "See a variety of rich habitats along the Chagrin River, including bottomland forest, wetland, meadow and creek.", LengthInMiles = 4.1, EstimatedWalkTimeinMinutes = 73, TrailHead = new PanoramicModel() {Latitude = 41, Longitude = -81}, PointsOfInterest = new List<PanoramicModel>() { new PanoramicModel() {Latitude = 41, Longitude = -81 } }} },

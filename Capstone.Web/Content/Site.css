@@ -234,6 +234,7 @@ div.navbar {
         margin-right: auto;
     }
 
+
 .park-list-description img {
     width: 200px;
     float: left;
@@ -241,7 +242,7 @@ div.navbar {
     border-radius: 5px;
 }
 
-.choose-park {
+.title-text {
     text-align: center;
 }
 .park-list-description {
@@ -266,6 +267,10 @@ div.navbar {
         text-decoration: none;
         color: black;
     }
+
+.title-text {
+    text-align: center;
+}
 
 footer {
     text-align: center;
