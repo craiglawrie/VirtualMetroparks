@@ -311,11 +311,12 @@ footer {
 }
 
 .last-seen-text {
-    grid-area: text;
+    grid-area: text; 
     position: relative;
     margin: 5px;
     padding: 5px;
     background-color: rgba(178, 177, 177,0.6);
+    display: inline;
     vertical-align: middle;
 }
 
