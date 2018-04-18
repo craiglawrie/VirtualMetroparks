@@ -113,7 +113,7 @@ function initParkMap() {
 
 }
 
-var audio;
+var audio = new Audio();
 var audioFile;
 
 function MakeTour() {
@@ -162,33 +162,40 @@ function MakeTour() {
             pannellum.viewer('panorama', viewerParameters);
 
             setBackgroundAudioForNewPanoramic(panoramicId);
-
-            //if (trail.TrailHead.BackgroundSoundClips.length > 0) {
-            //    let clipSelection = Math.floor(Math.random() * Math.floor(trail.TrailHead.BackgroundSoundClips.length));
-            //    audioFile = trail.TrailHead.BackgroundSoundClips[clipSelection].AudioAddress;
-            //    audio = new Audio(audioFile);
-            //    audio.play();
-            //}
         });
 }
+
 
 function setBackgroundAudioForNewPanoramic(destinationId) {
     fetch(domainAddress + `/api/panoramic/${destinationId}`)
         .then(response => response.json())
         .then(panoramic => {
-           
-            if (panoramic.BackgroundSoundClips.map(function (soundClip) { return soundClip.AudioAddress }).includes(audioFile)) {
-                console.log("HelloWorld");
-            } else {
-                if (panoramic.BackgroundSoundClips.length > 0) {
-                    let clipSelection = Math.floor(Math.random() * Math.floor(panoramic.BackgroundSoundClips.length));
-                    audioFile = panoramic.BackgroundSoundClips[clipSelection].AudioAddress;
-                    audio = new Audio(audioFile);
-                    audio.play();
-                }
+            let soundClips = panoramic.BackgroundSoundClips.map(function (soundClip) { return soundClip.AudioAddress });
+            if (!soundClips.includes(audioFile)) {
+                audioFile = getNewAudioFileFromArray(soundClips);
+                playAudio();
+            }
+            else {
+                audioFile = getNewAudioFileFromArray(soundClips);
             }
         });
+}
 
+function playAudio() {
+    audio.src = audioFile;
+    audio.play();
+    audio.addEventListener("ended", function () {
+        playAudio();
+    }); 
+}
+
+function getNewAudioFileFromArray(soundClips) {
+    if (soundClips.length > 0) {
+        let clipSelection = Math.floor(Math.random() * Math.floor(soundClips.length));
+        audioFile = soundClips[clipSelection];
+    }
+    console.log(audioFile);
+    return audioFile;
 }
 
 function getParameterByName(name, url) {
@@ -199,4 +206,8 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function toggleAudioMute() {
+    audio.muted = !audio.muted;
 }
