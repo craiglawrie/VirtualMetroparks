@@ -151,6 +151,31 @@ namespace Capstone.Web.DAL
             return trails;
         }
 
+        public string GetImageByTrailId(int id)
+        {
+            string imageAddress = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM trail_images WHERE trail_id = @id;", conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        imageAddress = Convert.ToString(reader["trail_image_address"]);
+                    }
+
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return imageAddress;
+        }
+
         private static TrailModel MapRowToTrail(SqlDataReader reader)
         {
             return new TrailModel
