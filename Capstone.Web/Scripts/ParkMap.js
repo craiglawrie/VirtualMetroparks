@@ -114,7 +114,11 @@ function initParkMap() {
 }
 
 var audio = new Audio();
+audio.addEventListener("ended", function () {
+    playAudio();
+});
 var audioFile;
+var soundClips = [];
 
 function MakeTour() {
     let trailName = getParameterByName("trailName");
@@ -148,42 +152,43 @@ function MakeTour() {
                         }
                     };
                     panoramicHotSpots.push(hotSpot);
-                    
-                    panoramic.LastSeenImages.forEach(image => {
-                        let hotSpot = {
-                            "pitch": image.Pitch,
-                            "yaw": image.Yaw,
-                            "type": "info",
-                            "text": image.Title + "\n" + image.Description,
-                            "clickHandlerFunc": function () {
-                                $.fancybox.open(`
+                });
+
+                panoramic.LastSeenImages.forEach(image => {
+                    let hotSpot = {
+                        "pitch": image.Pitch,
+                        "yaw": image.Yaw,
+                        "type": "info",
+                        "text": image.Title + "\n" + image.Description,
+                        "clickHandlerFunc": function () {
+                            $.fancybox.open(`
                                     <div>
-                                        <h2>`+image.Title+`</h2>
-                                        <img src="`+image.ImageAddress+`" />
+                                        <h2>`+ image.Title + `</h2>
+                                        <img src="`+ image.ImageAddress + `" />
                                     </div> `);
-                            }
-                        };
-                        panoramicHotSpots.push(hotSpot);
-                    });
-                    
-                    panoramic.LastSeenVideos.forEach(video => {
-                        let hotSpot = {
-                            "pitch": video.Pitch,
-                            "yaw": video.Yaw,
-                            "type": "info",
-                            "text": video.Title + "\n" + video.Description,
-                            "clickHandlerFunc": function () {
-                                $.fancybox.open(`
+                        }
+                    };
+                    panoramicHotSpots.push(hotSpot);
+                });
+
+                panoramic.LastSeenVideos.forEach(video => {
+                    let hotSpot = {
+                        "pitch": video.Pitch,
+                        "yaw": video.Yaw,
+                        "type": "info",
+                        "text": video.Title + "\n" + video.Description,
+                        "clickHandlerFunc": function () {
+                            $.fancybox.open(`
                                     <div>
                                         <h2>`+ video.Title + `</h2>
                                         <iframe width="1000px" height="600px" src="`+ video.VideoAddress + `" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                     </div> `);
-                            }
-                        };
-                        panoramicHotSpots.push(hotSpot);
-                    });
-
+                        }
+                    };
+                    panoramicHotSpots.push(hotSpot);
                 });
+
+
 
                 viewerParameters["scenes"]["" + panoramic.PanoramicId] = {
                     "pitch": 0,
@@ -198,6 +203,7 @@ function MakeTour() {
 
             setBackgroundAudioForNewPanoramic(panoramicId);
         });
+
 }
 
 
@@ -205,13 +211,9 @@ function setBackgroundAudioForNewPanoramic(destinationId) {
     fetch(domainAddress + `/api/panoramic/${destinationId}`)
         .then(response => response.json())
         .then(panoramic => {
-            let soundClips = panoramic.BackgroundSoundClips.map(function (soundClip) { return soundClip.AudioAddress });
+            soundClips = panoramic.BackgroundSoundClips.map(function (soundClip) { return soundClip.AudioAddress });
             if (!soundClips.includes(audioFile)) {
-                audioFile = getNewAudioFileFromArray(soundClips);
                 playAudio();
-            }
-            else {
-                audioFile = getNewAudioFileFromArray(soundClips);
             }
         });
 }
@@ -219,11 +221,8 @@ function setBackgroundAudioForNewPanoramic(destinationId) {
 function playAudio() {
     audio.pause();
     audio.currentTime = 0;
-    audio.src = audioFile;
+    audio.src = getNewAudioFileFromArray(soundClips);
     audio.play();
-    audio.addEventListener("ended", function () {
-        playAudio();
-    });
 }
 
 function getNewAudioFileFromArray(soundClips) {
