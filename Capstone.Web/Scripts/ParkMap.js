@@ -148,6 +148,31 @@ function MakeTour() {
                         }
                     };
                     panoramicHotSpots.push(hotSpot);
+
+                    console.log(panoramic.LastSeenImages);
+                    panoramic.LastSeenImages.forEach(image => {
+                        let hotSpot = {
+                            "pitch": image.Pitch,
+                            "yaw": image.Yaw,
+                            "type": "info",
+                            "text": image.Title + "\n" + image.Description
+
+                        };
+                        panoramicHotSpots.push(hotSpot);
+                    });
+
+                    console.log(panoramic.LastSeenVideos);
+                    panoramic.LastSeenVideos.forEach(video => {
+                        let hotSpot = {
+                            "pitch": video.Pitch,
+                            "yaw": video.Yaw,
+                            "type": "info",
+                            "text": video.Title + "\n" + video.Description
+
+                        };
+                        panoramicHotSpots.push(hotSpot);
+                    });
+
                 });
 
                 viewerParameters["scenes"]["" + panoramic.PanoramicId] = {
@@ -186,7 +211,7 @@ function playAudio() {
     audio.play();
     audio.addEventListener("ended", function () {
         playAudio();
-    }); 
+    });
 }
 
 function getNewAudioFileFromArray(soundClips) {

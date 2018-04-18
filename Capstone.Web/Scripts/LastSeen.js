@@ -16,7 +16,7 @@
 
             trail.PanoramicsInTrail.forEach(panoramic => {
                 console.log(panoramic.BackgroundSoundClips);
-                panoramicHotSpots = [];
+                let panoramicHotSpots = [];
                 panoramic.Connections.forEach(connection => {
                     let hotSpot = {
                         "pitch": connection.HotspotPitch,
@@ -29,19 +29,16 @@
                     panoramicHotSpots.push(hotSpot);
                 });
 
+                console.log(panoramic.LastSeenImages);
                 panoramic.LastSeenImages.forEach(image => {
-                    console.log(panoramic.GetLastSeenImagesByPanoramicId);
-                    panoramicHotSpots = [];
-                    panoramic.GetLastSeenImagesByPanoramicId.forEach(connection => {
-                        let hotSpot = {
-                            "pitch": connection.Pitch,
-                            "yaw": connection.Yaw,
-                            "type": "info",
-                            "text": connection.Title connection.Description,
-                            "image": connection.ImageAddress
-                        };
-                        panoramicHotSpots.push(hotSpot);
-                    })
+                    let hotSpot = {
+                        "pitch": image.Pitch,
+                        "yaw": image.Yaw,
+                        "type": "info",
+                        "text": image.Title + "\n" + image.Description,
+                        "image": image.ImageAddress
+                    };
+                    panoramicHotSpots.push(hotSpot);
                 });
 
 

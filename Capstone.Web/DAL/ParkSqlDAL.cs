@@ -100,18 +100,44 @@ namespace Capstone.Web.DAL
             return park;
         }
 
+        public string GetImageByParkId(int id)
+        {
+            string imageAddress = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM park_images WHERE park_id = @id;", conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if(reader.Read())
+                    {
+                        imageAddress = Convert.ToString(reader["park_image_address"]);
+                    }
+                        
+                }
+            }
+            catch(SqlException)
+            {
+                throw;
+            }
+            return imageAddress;
+        }
+
         private static ParkModel MapRowToPark(SqlDataReader reader)
         {
             return new ParkModel()
             {
                 ParkId = Convert.ToInt32(reader["park_id"]),
                 Name = Convert.ToString(reader["park_name"]),
-                Description = Convert.ToString(reader["park_description"]),
+                Description = Convert.ToString(reader["park_description"]),                
                 Latitude = Convert.ToDouble(reader["park_latitude"]),
                 Longitude = Convert.ToDouble(reader["park_longitude"]),
                 Zoom = Convert.ToInt32(reader["default_zoom"])
             };
         }
 
+        
     }
 }

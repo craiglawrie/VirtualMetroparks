@@ -2,9 +2,9 @@
 @{
     ViewBag.Title = "ChoosePark";
 }
-
-<h2>Choose your park</h2>
-
+<div class="choose-park">
+    <h2>Choose your park</h2>
+</div>
 
 <div id="map"></div>
 
@@ -17,7 +17,7 @@
     @foreach (var park in Model)
     {
         <div class="inner-box-park">
-            <img src="~/Content/images/@park.Image" />
+            <img src="@park.Image" />
             <a href="@Url.Action("ChooseTrail","VirtualTrails", new { id = @park.Name })">
                 <h4>@park.Name</h4>
             </a>

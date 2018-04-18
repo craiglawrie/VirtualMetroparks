@@ -14,12 +14,16 @@ namespace Capstone.Web.Controllers
         IParkDAL parkDAL;
         ITrailDAL trailDAL;
         IPanoramicDAL panoramicDAL;
+        ILastSeenImagesDAL lastSeenImagesDAL;
+        ILastSeenVideosDAL lastSeenVideosDAL;
 
-        public ParkInfoController(IParkDAL parkDAL, ITrailDAL trailDAL, IPanoramicDAL panoramicDAL)
+        public ParkInfoController(IParkDAL parkDAL, ITrailDAL trailDAL, IPanoramicDAL panoramicDAL, ILastSeenImagesDAL lastSeenImagesDAL, ILastSeenVideosDAL lastSeenVideosDAL)
         {
             this.parkDAL = parkDAL;
             this.trailDAL = trailDAL;
             this.panoramicDAL = panoramicDAL;
+            this.lastSeenImagesDAL = lastSeenImagesDAL;
+            this.lastSeenVideosDAL = lastSeenVideosDAL;
         }
 
         [HttpGet]
@@ -50,6 +54,8 @@ namespace Capstone.Web.Controllers
             TrailModel trail = trailDAL.GetTrailByTrailName(trailName);
             trail.PanoramicsInTrail = panoramicDAL.GetPanoramicsByTrailName(trailName);
             trail.PanoramicsInTrail.ForEach(panoramic => panoramic.Connections = panoramicDAL.GetConnectionsByPanoramicId(panoramic.PanoramicId));
+            trail.PanoramicsInTrail.ForEach(panoramic => panoramic.LastSeenImages = lastSeenImagesDAL.GetLastSeenImagesByPanoramicId(panoramic.PanoramicId));
+            trail.PanoramicsInTrail.ForEach(panoramic => panoramic.LastSeenVideos = lastSeenVideosDAL.GetLastSeenVideosByPanoramicId(panoramic.PanoramicId));
             trail.PanoramicsInTrail.ForEach(panoramic => panoramic.BackgroundSoundClips = panoramicDAL.GetAllBackgroundSoundClips());
             trail.TrailHead = panoramicDAL.GetTrailHeadByTrailId(trail.TrailId);
             trail.TrailHead = trail.PanoramicsInTrail.First(panoramic => panoramic.PanoramicId == trail.TrailHead.PanoramicId);

@@ -40,7 +40,7 @@ textarea {
     grid-template-areas: 'a b';
 }
 
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     #logo-header {
         grid-template-columns: 1fr;
         grid-gap: 5px;
@@ -67,7 +67,7 @@ textarea {
     .home-p-second {
     }
 
-}
+}*/
 
 .left-header {
     grid-area: a;
@@ -111,9 +111,9 @@ div.navbar {
     position: absolute;
 }
 
-h2 {
+/*h2 {
     text-align: center;
-}
+}*/
 
 /* INDEX/HOME LAYOUT *************************************************************/
 .background-top-image {
@@ -241,6 +241,9 @@ h2 {
     border-radius: 5px;
 }
 
+.choose-park {
+    text-align: center;
+}
 .park-list-description {
     padding: 16px;
     margin-top: 30px;
@@ -256,6 +259,7 @@ h2 {
     padding: 5px;
     border-radius: 5px;
     background-color: #c3a995;
+    overflow: hidden;
 }
 
     .inner-box-park a {
@@ -274,12 +278,12 @@ footer {
     padding: 0px;
 }
 
-#container h2 {
-   text-align: left;
+#container {
+  text-align: center;
 }
 
 #panorama {
-    width: 800px;
+    /*width: 800px;*/
     height: 600px;
     display: block;
 }
@@ -289,6 +293,7 @@ footer {
     padding: 15px;
     margin: 15px;
     z-index: -1;
+    text-align: left !important;
 }
 
 .last-seen-columns {

@@ -143,7 +143,7 @@ namespace Capstone.Web.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(@"SELECT * FROM last_seen_images                                                         
-                                                      WHERE last_seen_images.panoramic_id = @panoramicId;", conn);
+                                                      WHERE last_seen_images.panoramic_image_id = @panoramicId;", conn);
                     cmd.Parameters.AddWithValue("@panoramicId", panoramicId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())

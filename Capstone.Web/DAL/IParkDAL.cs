@@ -12,6 +12,7 @@ namespace Capstone.Web.DAL
         ParkModel GetParkById(int id);
         List<ParkModel> GetAllParks();
         ParkModel GetParkByParkName(string name);
+        string GetImageByParkId(int id);
         
     }
 }

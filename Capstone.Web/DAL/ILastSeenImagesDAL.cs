@@ -12,5 +12,6 @@ namespace Capstone.Web.DAL
         List<LastSeenImagesModel> GetLastSeenImagesByTrailId(int trailId);
         List<LastSeenImagesModel> GetAllLastSeenImages();
         List<LastSeenImagesModel> GetLastSeenImagesByParkId(int parkId);
+        List<LastSeenImagesModel> GetLastSeenImagesByPanoramicId(int panoramicId);
     }
 }

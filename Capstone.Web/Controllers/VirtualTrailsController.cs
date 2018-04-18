@@ -33,6 +33,7 @@ namespace Capstone.Web.Controllers
         public ActionResult ChoosePark()
         {
             List<ParkModel> parks = parkDAL.GetAllParks();
+            parks.ForEach(park => park.Image = parkDAL.GetImageByParkId(park.ParkId));
             return View("ChoosePark", parks);
         }
         
