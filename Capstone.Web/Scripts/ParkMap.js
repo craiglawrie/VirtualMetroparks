@@ -113,7 +113,7 @@ function initParkMap() {
 
 }
 
-var audio;
+var audio = new Audio();
 var audioFile;
 
 function MakeTour() {
@@ -182,11 +182,11 @@ function setBackgroundAudioForNewPanoramic(destinationId) {
 }
 
 function playAudio() {
-    audio = new Audio(audioFile);
+    audio.src = audioFile;
     audio.play();
     audio.addEventListener("ended", function () {
         playAudio();
-    });
+    }); 
 }
 
 function getNewAudioFileFromArray(soundClips) {
@@ -206,4 +206,8 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function toggleAudioMute() {
+    audio.muted = !audio.muted;
 }
