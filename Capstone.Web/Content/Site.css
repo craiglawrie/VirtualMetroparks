@@ -268,27 +268,70 @@ footer {
 }
 
 /* Style for view trail**************************************************************/
+#container h1 {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+#container h2 {
+   text-align: left;
+}
+
 #panorama {
     width: 800px;
     height: 600px;
+    display: block;
 }
 
-#last-seen {
+.last-seen {
+    background-color: rgba(178, 177, 177,0.6);
+    padding: 15px;
+    margin: 15px;
+    z-index: -1;
+}
 
+.last-seen-columns {
+    padding: 15px;
+    z-index: -1;
+}
+
+#last-seen-column1 {
+    grid-area: column1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'image text';
+}
+
+#last-seen-column2 {
+    grid-area: column2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'image text';
 }
 
 .last-seen-text {
-
+    grid-area: text;
+    position: relative;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgba(178, 177, 177,0.6);
+    vertical-align: middle;
 }
 
-.last-seen-image {
-
+.last-seen-image img {
+    grid-area: image;
+    position: relative;
+    margin: 5px;
+    width: 300px;
+    height: 220px;
 }
 
 @media (min-width: 768px) {
-    #container {
+    .last-seen-columns {
         grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'column1 column2';
+        grid-gap: 20px;
         display: grid;
-        grid-template-areas: 'home-top' 'home-second';
     }
 }

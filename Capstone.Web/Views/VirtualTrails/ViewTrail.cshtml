@@ -4,7 +4,7 @@
 }
 
 <div id="container">
-    <h2>ViewTrail</h2>
+    <h1>ViewTrail</h1>
 
 
     <link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css" />
@@ -12,22 +12,34 @@
 
     <div id="panorama"></div>
     <script type="text/javascript">MakeTour();</script>
+    <div class="last-seen">
+        <h2>Last Seen on the Trail:</h2>
+        <div class="last-seen-columns">
+            <div id="last-seen-column1">
+                @foreach (var item in Model.Images)
+                {
+                    <div class="last-seen-image">
+                        <img src="@item.ImageAddress" />
+                    </div>
+                    <div class="last-seen-text">
+                        <span style="font-weight: bold">@item.Title</span><br>
+                        @item.Description
+                    </div>
+                }
+            </div>
 
-    <div id="last-seen">
-
-        <div class="last-seen-image">
-            @foreach (var item in Model.Images)
-            {
-                @item.ImageAddress;
-            }
-        </div>
-
-        <div class="last-seen-text">
-            @foreach (var item in Model.Images)
-            {
-                @item.Title;
-                @item.Description;
-            }
+            <div id="last-seen-column2">
+                @foreach (var item in Model.Videos)
+                {
+                    <div class="last-seen-image">
+                        <iframe width="300" height="220" style="margin:5px;" src="https://www.youtube.com/embed/8VHltLWY0jk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="last-seen-text">
+                        <span style="font-weight: bold">@item.Title</span><br>
+                        @item.Description
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>
