@@ -246,9 +246,9 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-let mutedIcons = ["/Content/images/sound play.png", "/Content/images/sound stop.png"]
+let mutedIcons = ["/Content/images/icons/sound stop.png", "/Content/images/icons/sound play.png"]
 function toggleAudioMute() {
     audio.muted = !audio.muted;
     let muteButton = document.querySelector('img[onclick="toggleAudioMute()"]')
-    muteButton.setAttribute("src", mutedIcons.filter(function (imageSrc) {return imageSrc !== muteButton.getAttribute("src") })[0]);
+    muteButton.setAttribute("src", mutedIcons.filter(function (imageSrc) { return imageSrc !== muteButton.getAttribute("src") })[0]);
 }

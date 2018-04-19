@@ -144,9 +144,7 @@ div.navbar {
     #wrapper {
         grid-template-rows: 1fr 1fr;
         display: grid;
-        grid-template-areas: 
-            'home-top' 
-            'home-second';
+        grid-template-areas: 'home-top' 'home-second';
     }
 
 
@@ -157,6 +155,7 @@ div.navbar {
     .background-top-image {
         top: 50rem;
     }
+
     .background-bottom-image {
         top: 100rem;
     }
@@ -226,13 +225,13 @@ div.navbar {
 
 
 /* PARK/TRAIL LAYOUT *************************************************************/
-    #map {
-        height: 400px;
-        width: 90%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
+#map {
+    height: 400px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 .park-list-description img {
@@ -245,6 +244,7 @@ div.navbar {
 .title-text {
     text-align: center;
 }
+
 .park-list-description {
     padding: 16px;
     margin-top: 30px;
@@ -284,7 +284,7 @@ footer {
 }
 
 #container {
-  text-align: center;
+    text-align: center;
 }
 
 #panorama {
@@ -293,12 +293,19 @@ footer {
     display: block;
 }
 
+.trail-view-actionbar {
+    background-color: rgba(178, 177, 177,0.6);
+    padding: 15px;
+    margin: 15px;
+    z-index: -1;
+}
+
 .last-seen {
     background-color: rgba(178, 177, 177,0.6);
     padding: 15px;
     margin: 15px;
     z-index: -1;
-    text-align: left !important;
+    text-align: left;
 }
 
 .last-seen-columns {
@@ -321,7 +328,7 @@ footer {
 }
 
 .last-seen-text {
-    grid-area: text; 
+    grid-area: text;
     position: relative;
     margin: 5px;
     padding: 5px;
@@ -338,11 +345,86 @@ footer {
     height: 220px;
 }
 
-@media (min-width: 768px) {
+.view-trail-info {
+    background-color: rgba(178, 177, 177,0.6);
+    padding: 15px;
+    margin: 15px;
+    z-index: -1;
+}
+
+@media (min-width: 993px) {
     .last-seen-columns {
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 'column1 column2';
         grid-gap: 20px;
         display: grid;
+    }
+
+    .trail-view-actionbar {
+        grid-template-columns: 8fr 1fr 1fr 1fr;
+        grid-template-areas: 'icon-mute icon-image icon-play icon-favorite-trail';
+        grid-gap: 10px;
+        display: grid;
+    }
+
+    #icon-mute {
+        width: 50px;
+        vertical-align: middle;
+    }
+
+    #icon-image {
+        width: 50px;
+        vertical-align: middle;
+    }
+
+    #icon-play {
+        width: 50px;
+        vertical-align: middle;
+    }
+
+    #icon-favorite-trail {
+        width: 50px;
+        vertical-align: middle;
+    }
+}
+
+@media (max-width: 992px) {
+    .last-seen-columns {
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 'column1' 'column2';
+        grid-gap: 20px;
+        display: grid;
+    }
+
+    .trail-view-actionbar {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 'icon-mute icon-image icon-play icon-favorite-trail';
+        grid-gap: 30px;
+        display: grid;
+        padding-left: 80px;
+    }
+
+    #icon-mute {
+        width: 40px;
+    }
+
+    #icon-image {
+        width: 40px;
+    }
+
+    #icon-play {
+        width: 40px;
+    }
+
+    #icon-favorite-trail {
+        width: 40px;
+    }
+}
+
+@media (max-width: 539px) {
+    .last-seen-columns {
+        grid-auto-rows: 200px;
+        grid-template-areas: 'image' 'text';
+        grid-gap: 20px;
     }
 }

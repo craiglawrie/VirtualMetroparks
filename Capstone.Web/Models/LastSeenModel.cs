@@ -9,5 +9,6 @@ namespace Capstone.Web.Models
     {
         public List<LastSeenImagesModel> Images { get; set; }
         public List<LastSeenVideosModel> Videos { get; set; }
+        public List<TrailModel> Trails { get; set; }
     }
 }
