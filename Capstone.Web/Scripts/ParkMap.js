@@ -246,6 +246,9 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+let mutedIcons = ["/Content/images/sound play.png", "/Content/images/sound stop.png"]
 function toggleAudioMute() {
     audio.muted = !audio.muted;
+    let muteButton = document.querySelector('img[onclick="toggleAudioMute()"]')
+    muteButton.setAttribute("src", mutedIcons.filter(function (imageSrc) {return imageSrc !== muteButton.getAttribute("src") })[0]);
 }
