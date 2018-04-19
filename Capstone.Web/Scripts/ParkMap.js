@@ -212,17 +212,20 @@ function setBackgroundAudioForNewPanoramic(destinationId) {
         .then(response => response.json())
         .then(panoramic => {
             soundClips = panoramic.BackgroundSoundClips.map(function (soundClip) { return soundClip.AudioAddress });
-            if (!soundClips.includes(audioFile)) {
+            if (!soundClips.includes(audioFile) || successfulBackgroundStart !== undefined) {
                 playAudio();
             }
         });
 }
 
+var successfulBackgroundStart;
 function playAudio() {
     audio.pause();
     audio.currentTime = 0;
     audio.src = getNewAudioFileFromArray(soundClips);
-    audio.play();
+    audio.play()
+        .then(success => { successfulBackgroundStart = success; })
+        .catch(error => { successfulBackgroundStart = error; });
 }
 
 function getNewAudioFileFromArray(soundClips) {
