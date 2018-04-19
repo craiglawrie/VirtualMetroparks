@@ -5,6 +5,8 @@ using Capstone.Web.Models;
 using Capstone.Web.DAL;
 using System.Transactions;
 using System.Data.SqlClient;
+using System.Configuration;
+using System.Linq;
 
 
 namespace Capstone.Tests
@@ -12,16 +14,49 @@ namespace Capstone.Tests
     [TestClass]
     public class PanoramicSqlDALTests
     {
-        public static string connection = @"Server=.\SqlExpress;Database=ParkInfo;Trusted_Connection=true";
+        static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        ParkModel park;
+        TrailModel trail;
+        PanoramicModel panoramicImage;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            park = new ParkModel()
+            {
+                Name = "testPark",
+                Description = "testDescription",
+                Latitude = 41,
+                Longitude = 100,
+                Zoom = 200
+            };
+
+            trail = new TrailModel()
+            {
+                Name = "testTrail",
+                Description = "testTrailDescription"
+            };
+
+            panoramicImage = new PanoramicModel()
+            {
+                ImageAddress = "address",
+                Latitude = 100,
+                Longitude = 42,
+            };
+        }
+
         [TestMethod]
         public void GetAllPanoramics()
         {
             using (TransactionScope transaction = new TransactionScope())
             {
-                PanoramicSqlDALTests.InsertFakePanoramic(10, 19, "test", 8.8, 100.1, 33, 56);
-                PanoramicSqlDAL testClass = new PanoramicSqlDAL(connection);
-                List<PanoramicModel> panoramic = testClass.GetAllPanoramics();
-                Assert.AreEqual(10, panoramic.Count);
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                int newPanoramicId = PanoramicSqlDALTests.InsertFakePanoramic(panoramicImage, newTrailId);
+                PanoramicSqlDAL testClass = new PanoramicSqlDAL(connectionString);
+                List<PanoramicModel> newPanoramicImages = testClass.GetAllPanoramics();
+                Assert.IsTrue(newPanoramicImages.Select(panoramic => panoramic.PanoramicId).Contains(newPanoramicId));
             }
         }
 
@@ -30,33 +65,48 @@ namespace Capstone.Tests
         {
             using (TransactionScope transaction = new TransactionScope())
             {
-                PanoramicSqlDALTests.InsertFakePanoramic(10, 19, "test", 8.8, 100.1, 33, 56);
-                PanoramicSqlDAL testClass = new PanoramicSqlDAL(connection);
-                PanoramicModel panoramic = testClass.GetPanoramicById(10);
-                Assert.AreEqual(10, panoramic.PanoramicId);
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                int newPanoramicId = PanoramicSqlDALTests.InsertFakePanoramic(panoramicImage, newTrailId);
+                PanoramicSqlDAL testClass = new PanoramicSqlDAL(connectionString);
+                PanoramicModel newPanoramicImages = testClass.GetPanoramicById(newPanoramicId);
+                Assert.AreEqual(newPanoramicImages.PanoramicId, newPanoramicId);
             }
         }
 
-        private static int InsertFakePanoramic(int panoramicId, int trailId, string imageAddress, double latitude, double longitude, int nextPanoramic, int prevPanoramic)
+        private static int InsertFakePanoramic(PanoramicModel panoramicImage, int trailId)
         {
-            using (SqlConnection conn = new SqlConnection(connection))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO panoramics VALUES (@trailId, @imageAddress, @latitude, @longitude, @nextPanoramic, @prevPanoramic)", conn);
-                cmd.Parameters.AddWithValue("@trail_id", trailId);
-                cmd.Parameters.AddWithValue("@image_Address", imageAddress);
-                cmd.Parameters.AddWithValue("@latitude", latitude);
-                cmd.Parameters.AddWithValue("@longitude", longitude);
-                cmd.Parameters.AddWithValue("@nextPanoramic", nextPanoramic);
-                cmd.Parameters.AddWithValue("@prevPanoramic", prevPanoramic);
+                SqlCommand cmd = new SqlCommand("INSERT INTO panoramic_images " +
+                                              " (trail_id, image_address, image_latitude, image_longitude, is_trail_head) " +
+                                              "VALUES " +
+                                              " (@trailId, @imageAddress, @latitude, @longitude, @isTrailHead)", conn);
+                cmd.Parameters.AddWithValue("@trailId", trailId);
+                cmd.Parameters.AddWithValue("@imageAddress", panoramicImage.ImageAddress);
+                cmd.Parameters.AddWithValue("@latitude", panoramicImage.Latitude);
+                cmd.Parameters.AddWithValue("@longitude", panoramicImage.Longitude);
+                cmd.Parameters.AddWithValue("@isTrailHead", true);
 
                 cmd.ExecuteNonQuery();
 
-                cmd = new SqlCommand("SELECT MAX(panoramic_id) FROM trails", conn);
+                cmd = new SqlCommand("SELECT panoramic_image_id FROM panoramic_images " +
+                                     "WHERE panoramic_images.image_address = @imageAddress " +
+                                     "AND panoramic_images.image_latitude = @latitude " +
+                                     "AND panoramic_images.image_longitude = @longitude " +
+                                     "AND panoramic_images.is_trail_head = @isTrailHead ", conn);
+                cmd.Parameters.AddWithValue("@imageAddress", panoramicImage.ImageAddress);
+                cmd.Parameters.AddWithValue("@latitude", panoramicImage.Latitude);
+                cmd.Parameters.AddWithValue("@longitude", panoramicImage.Longitude);
+                cmd.Parameters.AddWithValue("@isTrailHead", true);
+
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
                 return result;
             }
 
         }
+
     }
 }
+

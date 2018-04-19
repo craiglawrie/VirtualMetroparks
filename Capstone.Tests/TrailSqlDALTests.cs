@@ -5,23 +5,55 @@ using Capstone.Web.Models;
 using Capstone.Web.DAL;
 using System.Transactions;
 using System.Data.SqlClient;
+using System.Configuration;
+using System.Linq;
 
 namespace Capstone.Tests
 {
     [TestClass]
     public class TrailSqlDALTests
     {
-        public static string connection = @"Server=.\SqlExpress;Database=ParkInfo;Trusted_Connection=true";
+        static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        ParkModel park;
+        TrailModel trail;
+        TrailImagesModel trailImage;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            park = new ParkModel()
+            {
+                Name = "testPark",
+                Description = "testDescription",
+                Latitude = 41,
+                Longitude = 100,
+                Zoom = 200
+            };
+
+            trail = new TrailModel()
+            {
+                Name = "testTrail",
+                Description = "testTrailDescription"
+            };
+
+            trailImage = new TrailImagesModel()
+            {
+                Bit = true,
+                ImageAddress = "address"
+            };
+        }
 
         [TestMethod]
         public void GetAllTrails()
         {
             using (TransactionScope transaction = new TransactionScope())
             {
-                TrailSqlDALTests.InsertFakeTrail(0, 19, "test", "Beautiful", "image");
-                TrailSqlDAL testClass = new TrailSqlDAL(connection);
-                List<TrailModel> trail = testClass.GetAllTrails();
-                Assert.AreEqual(19, trail.Count);
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                TrailSqlDAL testClass = new TrailSqlDAL(connectionString);
+                List<TrailModel> trails = testClass.GetAllTrails();
+                Assert.IsTrue(trails.Select(trail => trail.TrailId).Contains(newTrailId));
             }
         }
 
@@ -30,10 +62,11 @@ namespace Capstone.Tests
         {
             using (TransactionScope transaction = new TransactionScope())
             {
-                TrailSqlDALTests.InsertFakeTrail(21, 19, "test", "Beautiful", "image");
-                TrailSqlDAL testClass = new TrailSqlDAL(connection);
-                TrailModel trail = testClass.GetTrailById(21);
-                Assert.AreEqual(21, trail.TrailId);
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail,newParkId);
+                TrailSqlDAL testClass = new TrailSqlDAL(connectionString);
+                TrailModel newTrail = testClass.GetTrailById(newTrailId);
+                Assert.AreEqual(newTrail.TrailId, newTrailId);
             }
         }
 
@@ -42,29 +75,97 @@ namespace Capstone.Tests
         {
             using (TransactionScope transaction = new TransactionScope())
             {
-                TrailSqlDALTests.InsertFakeTrail(21, 19, "test", "Beautiful", "image");
-                TrailSqlDAL testClass = new TrailSqlDAL(connection);
-                TrailModel trail = testClass.GetTrailByTrailName("test");
-                Assert.AreEqual("test", trail.Name);
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                TrailSqlDAL testClass = new TrailSqlDAL(connectionString);
+                TrailModel newTrail = testClass.GetTrailByTrailName(trail.Name);
+                Assert.AreEqual(newTrail.TrailId, newTrailId);
             }
         }
 
-        public static int InsertFakeTrail(int trailId, int parkId, string name, string description, string image)
+        [TestMethod]
+        public void GetTrailsByParkId()
         {
-            using (SqlConnection conn = new SqlConnection(connection))
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                TrailSqlDAL testClass = new TrailSqlDAL(connectionString);
+                List<TrailModel> newTrails = testClass.GetTrailsByParkId(newParkId);
+                Assert.IsTrue(newTrails.Select(trail => trail.TrailId).Contains(newTrailId));
+            }
+        }
+
+        [TestMethod]
+        public void GetTrailsByParkName()
+        {
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                TrailSqlDAL testClass = new TrailSqlDAL(connectionString);
+                List<TrailModel> newTrails = testClass.GetTrailsByParkName(park.Name);
+                Assert.IsTrue(newTrails.Select(trail => trail.TrailId).Contains(newTrailId));
+            }
+        }
+
+        [TestMethod]
+        public void GetImagesByTrailId()
+        {
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                int newTrailImageId = TrailSqlDALTests.InsertFakeTrailImage(trailImage, newTrailId);
+                TrailSqlDAL testClass = new TrailSqlDAL(connectionString);
+                string newTrailImageAddress = testClass.GetImageByTrailId(newTrailId);
+                Assert.AreEqual(trailImage.ImageAddress, newTrailImageAddress);
+            }
+        }
+
+        public static int InsertFakeTrail(TrailModel trail, int parkId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO parks VALUES (@name, @description, @image)", conn);
-                cmd.Parameters.AddWithValue("@park_id", parkId);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@image", image);
+                SqlCommand cmd = new SqlCommand("INSERT INTO trails " +
+                                              " (park_id, trail_name, trail_description) " +
+                                              "VALUES " +
+                                              " (@parkId, @name, @description)", conn);
+                cmd.Parameters.AddWithValue("@parkId", parkId);
+                cmd.Parameters.AddWithValue("@name", trail.Name);
+                cmd.Parameters.AddWithValue("@description", trail.Description);
 
                 cmd.ExecuteNonQuery();
 
-                cmd = new SqlCommand("SELECT MAX(trail_id) FROM trails", conn);
+                cmd = new SqlCommand("SELECT trail_id FROM trails " +
+                                     "WHERE trails.trail_name = @name " +
+                                     "AND trails.trail_description = @description", conn);
+                cmd.Parameters.AddWithValue("@name", trail.Name);
+                cmd.Parameters.AddWithValue("@description", trail.Description);
+               
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
                 return result;
+            }
+        }
+
+        public static int InsertFakeTrailImage(TrailImagesModel trailImage, int trailId)
+        {
+            int trailImageId = -1;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO trail_images " +
+                                              "(trail_id, trail_image_address, local) " +
+                                              "VALUES (@trailId, @imageAddress, @bit)", conn);
+                cmd.Parameters.AddWithValue("@trailId", trailId);
+                cmd.Parameters.AddWithValue("@imageAddress", trailImage.ImageAddress);
+                cmd.Parameters.AddWithValue("@bit", trailImage.Bit);
+
+
+                cmd.ExecuteNonQuery();
+
+                return trailImageId;
             }
         }
     }
