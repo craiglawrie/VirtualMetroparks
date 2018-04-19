@@ -84,7 +84,8 @@ namespace Capstone.Tests
                 int newPanoramicId = PanoramicSqlDALTests.InsertFakePanoramic(panoramicImage, newTrailId);
                 PanoramicSqlDAL testClass = new PanoramicSqlDAL(connectionString);
                 List<PanoramicModel> newPanoramicImages = testClass.GetPanoramicsByTrailId(newTrailId);
-                Assert.IsTrue(newPanoramicImages.Select(panoramic => panoramic.PanoramicId).Contains(newTrailId));
+                Assert.IsTrue(newPanoramicImages.Select(panoramic => panoramic.PanoramicId).Contains(newPanoramicId));
+                Assert.AreEqual(1, newPanoramicImages.Count);
             }
         }
 
