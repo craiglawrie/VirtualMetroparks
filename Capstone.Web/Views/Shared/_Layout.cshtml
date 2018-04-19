@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
     <script src="~/Scripts/ParkMap.js"></script>
-    
+
 </head>
 <body>
     <script type="text/javascript">
@@ -28,7 +28,9 @@
         <div class="container">
             <div id="logo-header">
                 <div class="left-header">
-                    <img src="~/Content/images/metropark 2.png" />
+                    <a href="@Url.Action("ChoosePark", "VirtualTrails")">
+                        <img src="~/Content/images/metropark w.png" />
+                    </a>
                 </div>
                 <div class="right-header">
                     <span>TEAM</span>
@@ -42,11 +44,35 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - TeamAmpersand</p>
-        </footer>
     </div>
+
+    <footer>
+        <div class="logo-footer">
+            <div class="metroparks-footer">
+                <img src="~/Content/images/metropark w.png" />
+            </div>
+            <div class="team-footer">
+                <span>TEAM</span>
+            </div>
+            <div class="ampersand-footer">
+                <span>&amp;</span>
+            </div>
+        </div>
+
+        <div class="link-footer">
+            <p>Contact</p>
+            <p>Feedback</p>
+            <p>Metroparks Home</p>
+            <p>Speak with a Naturalist</p>
+            <p>Metroparks Home</p>
+            <p>the Making Of</p>
+        </div>
+
+        <div class="copyright-footer">
+            <p>&copy; @DateTime.Now.Year - TeamAmpersand</p>
+        </div>
+    </footer>
+
 
 
     <script src="~/Scripts/bootstrap.min.js"></script>
