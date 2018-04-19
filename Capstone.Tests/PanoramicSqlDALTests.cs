@@ -74,6 +74,20 @@ namespace Capstone.Tests
             }
         }
 
+        [TestMethod]
+        public void GetPanoramicsByTrailId()
+        {
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                int newParkId = ParkSqlDALTests.InsertFakePark(park);
+                int newTrailId = TrailSqlDALTests.InsertFakeTrail(trail, newParkId);
+                int newPanoramicId = PanoramicSqlDALTests.InsertFakePanoramic(panoramicImage, newTrailId);
+                PanoramicSqlDAL testClass = new PanoramicSqlDAL(connectionString);
+                List<PanoramicModel> newPanoramicImages = testClass.GetPanoramicsByTrailId(newTrailId);
+                Assert.IsTrue(newPanoramicImages.Select(panoramic => panoramic.PanoramicId).Contains(newTrailId));
+            }
+        }
+
         private static int InsertFakePanoramic(PanoramicModel panoramicImage, int trailId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
