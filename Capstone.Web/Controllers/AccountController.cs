@@ -83,7 +83,7 @@ namespace Capstone.Web.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
+                ModelState.AddModelError("", "Invalid username or password. Please try again.");
                 return View(model);
             }
         }
@@ -114,6 +114,7 @@ namespace Capstone.Web.Controllers
                 //user.Roles.Add("Administrator");
                 //user.Roles.Add("Editor");
                 //....
+                user.Roles.Add("User");
 
 
                 var result = await UserManager.CreateAsync(user, model.Password);

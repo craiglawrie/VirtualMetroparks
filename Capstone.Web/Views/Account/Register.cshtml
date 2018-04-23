@@ -1,28 +1,32 @@
 ﻿@model Capstone.Web.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+                /**/
+
+                ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>Please register for the Virtual Metroparks system.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>    
-    <div>
-        @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
+    <h4>An account allows you to favorite trails, track your progress, and more!</h4>
+    <div class="form-group row">
+        @Html.TextBoxFor(m => m.Email, new { placeholder = "email", @class = "form-control" })
+        @Html.ValidationMessage("Email", new { @class = "invalid-field" })
     </div>
-    <div>
-        @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
+    <div class="form-group row">
+        @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class = "form-control" })
+        @Html.ValidationMessage("Password", new { @class = "invalid-field" })
     </div>
-    <div>
-        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password" })
+    <div class="form-group row">
+        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "form-control" })
+        @Html.ValidationMessage("ConfirmPassword", new { @class = "invalid-field" })
     </div>
-    <div>
-        <input type="submit" value="Register" />
+    <div class="form-group row">
+        @Html.ValidationMessage("", new { @class = "invalid-field" })
     </div>
-}
-
-@section Scripts {
-
+    <div class="form-group row">
+        <input type="submit" value="Register" class="btn btn-primary" />
+    </div>
 }
