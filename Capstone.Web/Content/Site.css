@@ -335,7 +335,19 @@ footer {
     grid-area: home-second;
 }
 
+#links-bar {
+    color: white;
+    text-decoration: none;
 
+}
+
+#links-bar a:first-child, span:first-child {
+   margin-left: 5rem;
+}
+
+#links-bar btn-group {
+    display: inline-block;
+}
 
 /* PARK/TRAIL LAYOUT *************************************************************/
 #map {

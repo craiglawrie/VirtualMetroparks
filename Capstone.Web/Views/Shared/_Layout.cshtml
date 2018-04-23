@@ -40,6 +40,24 @@
                 </div>
             </div>
         </div>
+        <div id="links-bar">
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { role = "form" }))
+                {
+                    <span>Welcome @(User.Identity.Name)!</span>
+                    <div class="btn-group">
+                        <input type="submit" value="Log Out" class="button" />
+                        @Html.AntiForgeryToken()
+                    </div>
+                }
+            }
+            else
+            {
+                @Html.ActionLink("Log In", "Login", "Account", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "btn btn-default" });
+            }
+        </div>
     </div>
 
     <div class="container body-content">
