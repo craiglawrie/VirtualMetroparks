@@ -56,33 +56,6 @@ textarea {
     grid-template-areas: 'a b';
 }
 
-@media (max-width: 768px) {
-    #logo-header {
-        grid-template-columns: 1fr;
-        grid-gap: 5px;
-        grid-template-areas: 'a' 'b';
-    }
-
-    body {
-        padding-top: 300px;
-    }
-
-    #entrance-text {
-    }
-
-    .home-title-top {
-    }
-
-    .home-p-top {
-    }
-
-    .home-title-second {
-    }
-
-    .home-p-second {
-    }
-}
-
 .left-header {
     grid-area: a;
     align-self: center;
@@ -126,6 +99,42 @@ textarea {
 div.navbar {
     background-color: rgb(38, 37, 37);
     position: absolute;
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        grid-template-areas: 'a' 'b';
+    }
+
+    .left-header {
+        margin-top: -3rem;
+    }
+
+    .right-header, .right-header-amp {
+        margin-top: -8rem;
+        margin-bottom: 1rem;
+    }
+
+    body {
+        padding-top: 220px;
+    }
+
+    #entrance-text {
+    }
+
+    .home-title-top {
+    }
+
+    .home-p-top {
+    }
+
+    .home-title-second {
+    }
+
+    .home-p-second {
+    }
 }
 
 footer {
