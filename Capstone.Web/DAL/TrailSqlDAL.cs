@@ -176,11 +176,14 @@ namespace Capstone.Web.DAL
             return imageAddress;
         }
 
+
+
         private static TrailModel MapRowToTrail(SqlDataReader reader)
         {
             return new TrailModel
             {
                 TrailId = Convert.ToInt32(reader["trail_id"]),
+                ParkId = Convert.ToInt32(reader["park_id"]),
                 Name = Convert.ToString(reader["trail_name"]),
                 Description = Convert.ToString(reader["trail_description"])
             };
