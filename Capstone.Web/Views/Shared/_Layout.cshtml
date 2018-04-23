@@ -48,14 +48,20 @@
                 {
                     <span>Welcome @(User.Identity.Name)!</span>
                     <div class="btn-group">
-                        <input type="submit" value="Log Out" class="button" />
+                        <input type="submit" value="Log Out" class="linkbar-button" />
                         @Html.AntiForgeryToken()
                     </div>
                 }
             }
             else
             {
-                @Html.ActionLink("Log In", "Login", "Account", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "btn btn-default" });
+                <form class="inline-form" method="get" action="@Url.Action("Login","Account", new { returnUrl = Request.Url.AbsoluteUri } )">
+                    <input type="submit" value="Log In" class="linkbar-button"/>
+                    <input type="hidden" name="returnUrl" value="@Request.Url.AbsoluteUri" />
+                </form>
+                <form class="inline-form" method="get" action="@Url.Action("Register","Account", new { returnUrl = Request.Url.AbsoluteUri } )">
+                    <input type="submit" value="Register" class="linkbar-button"/>
+                </form>
             }
         </div>
     </div>

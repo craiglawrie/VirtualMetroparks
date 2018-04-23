@@ -337,15 +337,27 @@ footer {
 
 #links-bar {
     color: white;
-    text-decoration: none;
-
+    margin-top: -3rem;
 }
 
-#links-bar a:first-child, span:first-child {
-   margin-left: 5rem;
+    #links-bar form:first-of-type {
+        margin-left: 10rem;
+    }
+
+    #links-bar btn-group {
+        display: inline-block;
+    }
+
+.linkbar-button {
+    display: inline-block;
+    color: white;
+    background-color: transparent;
+    padding: 1rem;
+    margin: 0;
+    border: none;
 }
 
-#links-bar btn-group {
+.inline-form {
     display: inline-block;
 }
 
@@ -371,7 +383,7 @@ footer {
 }
 
 .title-text h1 {
-    text-align: ;
+    text-align:;
     vertical-align: super;
     text-transform: lowercase;
     font-size: 2em;
