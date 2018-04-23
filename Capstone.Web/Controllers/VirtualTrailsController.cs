@@ -63,12 +63,17 @@ namespace Capstone.Web.Controllers
                 (panoramics.FirstOrDefault(panoramic => panoramic.PanoramicId == panoramicId) == null) && panoramicId != null)
             {
                 return new HttpStatusCodeResult(404);
-            } 
+            }
+
+            int selectedParkId = trails.First(trail => trail.Name == trailName).ParkId;
+            ParkModel selectedPark = parkDAL.GetParkById(selectedParkId);
 
             if (panoramicId == null)
             {
                 return RedirectToAction("ViewTrail", new { trailName = trailName, panoramicId = trails.First(trail => trail.Name == trailName).TrailHead.PanoramicId });
             }
+            ViewBag.TrailName = trailName;
+            ViewBag.ParkName = selectedPark.Name;
 
             return View("ViewTrail", superModel);
         }

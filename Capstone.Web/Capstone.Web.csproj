@@ -263,6 +263,8 @@
     <Content Include="Content\Fonts\fontawesome-webfont.woff" />
     <Content Include="Content\Fonts\Nimbus_Sans_Becker_PBla.ttf.woff" />
     <Content Include="Content\Fonts\Nimbus_Sans_Becker_PBla.ttf.eot" />
+    <Content Include="Content\Fonts\Bangla MN.ttf" />
+    <Content Include="Content\Fonts\OCR A Std Regular.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

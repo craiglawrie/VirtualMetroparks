@@ -1,7 +1,13 @@
 ﻿@font-face {
-    font-family: 'Nimbus_Sans_Becker_PBla';
-    src: url('Nimbus_Sans_Becker_PBla.ttf.woff') format('woff'), url('Nimbus_Sans_Becker_PBla.ttf.svg#Nimbus_Sans_Becker_PBla') format('svg'), url('Nimbus_Sans_Becker_PBla.ttf.eot'), url('Nimbus_Sans_Becker_PBla.ttf.eot?#iefix') format('embedded-opentype');
-    font-style: normal;
+    font-family: 'Bangla MN';
+    src: url('Fonts/Bangla MN.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'OCR A Std Regular';
+    url('Fonts/OCR A Std Regular.ttf') format('truetype');
+    font-weight: normal;
 }
 
 * {
@@ -97,15 +103,17 @@ textarea {
         color: white;
         font-weight: 900;
         font-size: 2.3rem;
+        font-family: 'Cutive Mono';
     }
 
 .right-header-amp {
     grid-area: b;
     position: relative;
     display: inline-block;
-    left: 7rem;
+    left: 6rem;
     width: 5rem;
     padding-top: 3.4rem;
+    font-family: 'OCR A Std Regular';
 }
 
     .right-header-amp span {
@@ -350,8 +358,27 @@ footer {
     margin-top: 5px;
 }
 
-.title-text {
+.title-text h1 {
+    text-align: ;
+    vertical-align: super;
+    text-transform: lowercase;
+    font-size: 2em;
+    font-family: 'Bangla MN';
+}
+
+.title-text h2 {
     text-align: center;
+    vertical-align: baseline;
+    text-transform: uppercase;
+    font-size: 5em;
+    font-family: 'Bangla MN';
+}
+
+.title-text h3 {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 4em;
+    font-family: 'Bangla MN';
 }
 
 .park-list-description {
@@ -409,6 +436,7 @@ footer {
     display: block;
     margin: 0px;
     padding: 0px;
+    font-family: 'Bangla MN';
 }
 
 #container {
