@@ -58,11 +58,12 @@
         </div>
 
         <!-- ABOUT TRAIL *******************************************-->
-        @*@if Model.Trails.TrailId
-        {
+       
+        
         <div class="view-trail-info">
-            <h2>About @trail.Name</h2>
-            <span>@trail.Description</span>
+            <h2>About @ViewBag.NameAndDescription[0]</h2>
+            <h3>@ViewBag.NameAndDescription[1]</h3>
+            @*<span>@trail.Description</span>*@
         </div>
-        }*@
+        
     </div>

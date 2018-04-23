@@ -68,12 +68,16 @@ namespace Capstone.Web.Controllers
             int selectedParkId = trails.First(trail => trail.Name == trailName).ParkId;
             ParkModel selectedPark = parkDAL.GetParkById(selectedParkId);
 
+            int selectedTrailId = trails.First(trail => trail.Name == trailName).TrailId;
+            List<string> selectedTrail = trailDAL.GetTrailDescriptionByTrailId(selectedTrailId);
+
             if (panoramicId == null)
             {
                 return RedirectToAction("ViewTrail", new { trailName = trailName, panoramicId = trails.First(trail => trail.Name == trailName).TrailHead.PanoramicId });
             }
             ViewBag.TrailName = trailName;
             ViewBag.ParkName = selectedPark.Name;
+            ViewBag.NameAndDescription = selectedTrail;
 
             return View("ViewTrail", superModel);
         }
