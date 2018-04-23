@@ -88,10 +88,10 @@ textarea {
     align-self: center;
 }
 
-    .left-header img {
+    .left-header img, a {
         width: 300px;
         display: inline-block;
-        position: relative;
+        z-index: -1;
     }
 
 .right-header {
@@ -355,10 +355,12 @@ footer {
     padding: 1rem;
     margin: 0;
     border: none;
+    z-index: 3;
 }
 
 .inline-form {
     display: inline-block;
+    z-index: 3;
 }
 
 /* PARK/TRAIL LAYOUT *************************************************************/
