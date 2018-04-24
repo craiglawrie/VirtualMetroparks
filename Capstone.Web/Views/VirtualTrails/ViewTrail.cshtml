@@ -3,67 +3,66 @@
     ViewBag.Title = "ViewTrail";
 }
 
-<div id="container">
+<div class="box-container">
     <div class="title-text">
         <h1>@ViewBag.ParkName</h1>
         <h2>@ViewBag.TrailName</h2>
     </div>
-        <!-- PANNELLUM API *******************************************-->
-        <link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css" />
-        <script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"></script>
+    <!-- PANNELLUM API *******************************************-->
+    <link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css" />
+    <script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"></script>
 
-        <div id="panorama"></div>
+    <div id="panorama"></div>
 
-        <script type="text/javascript">MakeTour();</script>
+    <script type="text/javascript">MakeTour();</script>
 
-        <!-- ICON BAR *******************************************-->
-        <div class="trail-view-actionbar">
-            <img id="icon-mute" src="~/Content/images/icons/sound stop.png" onclick="toggleAudioMute()" />
-            <img id="icon-image" src="~/Content/images/icons/camera black.png" />
-            <img id="icon-play" src="~/Content/images/icons/play.png" />
-            <img id="icon-favorite-trail" src="~/Content/images/icons/favorite.png" />
-        </div>
+    <!-- ICON BAR *******************************************-->
+    <div class="trail-view-actionbar">
+        <img id="icon-mute" src="~/Content/images/icons/sound stop.png" onclick="toggleAudioMute()" />
+        <img id="icon-image" src="~/Content/images/icons/camera black.png" />
+        <img id="icon-play" src="~/Content/images/icons/play.png" />
+        <img id="icon-favorite-trail" src="~/Content/images/icons/favorite.png" />
+    </div>
 
-
+    <div class="view-trail-additional-info">
         <!-- LAST SEEN ON TRAIL *******************************************-->
         <div class="last-seen">
             <h2>Last Seen on the Trail</h2>
             <div class="last-seen-columns">
                 <div id="last-seen-column1">
                     @foreach (var item in Model.Images)
-                {
-                    <div class="last-seen-image">
-                        <img src="@item.ImageAddress" />
-                    </div>
-                    <div class="last-seen-text">
-                        <span style="font-weight: bold">@item.Title</span><br>
-                        @item.Description
-                    </div>
-            }
+                    {
+                        <div class="last-seen-image">
+                            <img src="@item.ImageAddress" />
+                        </div>
+                        <div class="last-seen-text">
+                            <p style="font-weight: bold">@item.Title</p>
+                            @item.Description
+                        </div>
+                    }
                 </div>
 
                 <div id="last-seen-column2">
                     @foreach (var item in Model.Videos)
-                {
-                    <div class="last-seen-image">
-                        <iframe width="300" height="220" style="margin:5px;" src="https://www.youtube.com/embed/8VHltLWY0jk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                    <div class="last-seen-text">
-                        <span style="font-weight: bold">@item.Title</span><br>
-                        @item.Description
-                    </div>
-            }
+                    {
+                        <div class="last-seen-image">
+                            <iframe width="300" height="220" style="margin:5px;" src="https://www.youtube.com/embed/8VHltLWY0jk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <div class="last-seen-text">
+                            <p style="font-weight: bold">@item.Title</p>
+                            @item.Description
+                        </div>
+                    }
                 </div>
             </div>
         </div>
 
         <!-- ABOUT TRAIL *******************************************-->
-       
-        
+
+
         <div class="view-trail-info">
-            <h2>About @ViewBag.NameAndDescription[0]</h2>
-            <h3>@ViewBag.NameAndDescription[1]</h3>
-            @*<span>@trail.Description</span>*@
+            <h2>About the trail: @ViewBag.NameAndDescription[0]</h2>
+            <p>@ViewBag.NameAndDescription[1]</p>
         </div>
-        
     </div>
+</div>
