@@ -284,7 +284,6 @@ namespace Capstone.Web.DAL
                         {
                             AudioId = Convert.ToInt32(reader["trail_sound_id"]),
                             AudioAddress = Convert.ToString(reader["trail_sound_file"])
-
                         };
 
                         backgroundSoundClips.Add(soundClip);
@@ -300,6 +299,55 @@ namespace Capstone.Web.DAL
             
         }
 
+        public bool AddVisitedPanoramicByUsername(int panoramicId, string userName)
+        {
+            bool result = false;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("", conn);
+
+                    result = cmd.ExecuteNonQuery() == 1;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return result;
+        }
+
+        public List<PanoramicModel> GetVisitedPanoramicsByUsername(string userName)
+        {
+            List<PanoramicModel> panoramics = new List<PanoramicModel>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"", conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        PanoramicModel panoramic = MapRowToPanoramic(reader);
+                        panoramics.Add(panoramic);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return panoramics;
+        }
+
         private static PanoramicModel MapRowToPanoramic(SqlDataReader reader)
         {
             return new PanoramicModel
@@ -310,7 +358,5 @@ namespace Capstone.Web.DAL
                 Longitude = Convert.ToDouble(reader["image_longitude"])
             };
         }
-
-       
     }
 }

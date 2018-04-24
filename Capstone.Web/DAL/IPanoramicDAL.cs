@@ -18,5 +18,7 @@ namespace Capstone.Web.DAL
         List<TourConnection> GetConnectionsByPanoramicId(int panoramicId);
         List<BackgroundSoundClip> GetBackgroundSoundClipsByPanoramicId(int panoramicId);
         List<BackgroundSoundClip> GetAllBackgroundSoundClips();
+        bool AddVisitedPanoramicByUsername(int panoramicId, string userName);
+        List<PanoramicModel> GetVisitedPanoramicsByUsername(string userName);
     }
 }
