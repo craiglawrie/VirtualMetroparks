@@ -70,6 +70,7 @@ textarea {
 .right-header {
     grid-area: b;
     padding-top: 6.65rem;
+    padding-right: 3rem;
 }
 
     .right-header span {
@@ -137,6 +138,27 @@ div.navbar {
     }
 }
 
+@media (max-width: 539px) {
+    #logo-header {
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        grid-template-areas: 'a' 'b';
+    }
+
+    .left-header {
+        margin-top: -3rem;
+    }
+
+    .right-header, .right-header-amp {
+        margin-top: -8rem;
+        margin-bottom: 1rem;
+    }
+
+    body {
+        padding-top: 220px;
+    }
+}
+
 footer {
     background-color: rgb(38, 37, 37);
     display: grid;
@@ -174,6 +196,7 @@ footer {
     align-self: center;
     justify-self: right;
     margin-top: -30px;
+    font-family: 'Cutive Mono';
 }
 
 .ampersand-footer {
@@ -190,6 +213,7 @@ footer {
         font-weight: 600;
         font-size: 5rem;
         margin-left: 2px;
+        font-family: 'OCR A Std Regular';
     }
 
 
@@ -467,14 +491,14 @@ footer {
     }
 
 /* Style for view trail**************************************************************/
-#container h1 {
+.container h1 {
     display: block;
     margin: 0px;
     padding: 0px;
     font-family: 'Bangla MN';
 }
 
-#container {
+.container {
     text-align: center;
 }
 
@@ -493,6 +517,14 @@ footer {
     border-radius: 5px;
 }
 
+.view-trail-additional-info h2 {
+    text-align: left;
+    vertical-align: baseline;
+    font-size: 2em;
+    font-family: 'Bangla MN';
+    margin: 5px 0 0 0;
+}
+
 .last-seen {
     background-color: rgba(178, 177, 177,0.6);
     padding: 15px;
@@ -505,6 +537,7 @@ footer {
 .last-seen-columns {
     padding: 15px;
     z-index: -1;
+    padding-top: 10px;
 }
 
 #last-seen-column1 {
@@ -548,6 +581,10 @@ footer {
     margin: 15px;
     z-index: -1;
 }
+
+    .view-trail-info p {
+        text-align: left;
+    }
 
 @media (min-width: 993px) {
     .last-seen-columns {
