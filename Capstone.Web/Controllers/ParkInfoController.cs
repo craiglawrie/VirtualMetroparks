@@ -41,8 +41,24 @@ namespace Capstone.Web.Controllers
         {
             ParkModel park = parkDAL.GetParkByParkName(parkName);
             park.Trails = trailDAL.GetTrailsByParkName(parkName);
-            park.Trails.ForEach(trail => trail.TrailHead = panoramicDAL.GetTrailHeadByTrailId(trail.TrailId));
-            park.Trails.ForEach(trail => trail.PointsOfInterest = panoramicDAL.GetPointsOfInterestByTrailId(trail.TrailId));
+            park.UserVisitedPanoramics = new List<PanoramicModel>();
+            park.Trails.ForEach(
+                trail =>
+                {
+                    trail.TrailHead = panoramicDAL.GetTrailHeadByTrailId(trail.TrailId);
+                    trail.PointsOfInterest = panoramicDAL.GetPointsOfInterestByTrailId(trail.TrailId);
+                    trail.PanoramicsInTrail = panoramicDAL.GetPanoramicsByTrailId(trail.TrailId);
+                    trail.PanoramicsInTrail.ForEach(
+                        panoramic => panoramic.Connections = panoramicDAL.GetConnectionsByPanoramicId(panoramic.PanoramicId)
+                    );
+
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        park.UserVisitedPanoramics.AddRange(panoramicDAL.GetVisitedPanoramicsByUsername(User.Identity.Name));
+                    }
+                }
+            );
+
 
             return Ok(park);
         }
@@ -79,6 +95,13 @@ namespace Capstone.Web.Controllers
             {
                 panoramicDAL.AddVisitedPanoramicByUsername(panoramicId, User.Identity.Name);
             }
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/visited/{trailId}")]
+        public IHttpActionResult GetUserVisitedPanoramicsByTrailId(int trailId)
+        {
             return Ok();
         }
     }

@@ -17,5 +17,6 @@ namespace Capstone.Web.Models
         public int Zoom { get; set; }
 
         public List<TrailModel> Trails { get; set; }
+        public List<PanoramicModel> UserVisitedPanoramics { get; set; }
     }
 }

@@ -51,7 +51,10 @@ function initParkMap() {
     let trailDetails = {};
     let poiDetails = {};
     let i = 0;
-    fetch(domainAddress + `/api/park/${parkName}`)
+    fetch(domainAddress + `/api/park/${parkName}`, {
+        method: 'GET',
+        credentials: 'include'
+    })
         .then(response => response.json())
         .then(park => {
             // location list
@@ -62,7 +65,50 @@ function initParkMap() {
                 zoom: park.Zoom,
                 center: parkCenter,
                 streetViewControl: false,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            });
+
+            // draw trails, loops, paths, etc
+            let userVisitedPanoramicIds = park.UserVisitedPanoramics.map(function (pan) { return pan.PanoramicId; });
+            park.Trails.forEach(trail => {
+                let uniqueConnections = [];
+                trail.PanoramicsInTrail.forEach(panoramic => {
+                    panoramic.Connections.forEach(connection => {
+
+                        let destination = trail.PanoramicsInTrail.filter(function (pan) { return pan.PanoramicId === connection.DestinationId; })[0];
+
+                        let connectionSource = new google.maps.LatLng(panoramic.Latitude, panoramic.Longitude);
+                        let connectionDest = new google.maps.LatLng(destination.Latitude, destination.Longitude);
+
+                        let trailSection = new google.maps.Polyline({
+                            path: [connectionSource, connectionDest],
+                            strokeColor: "#FFFFFF",
+                            strokeOpacity: 1,
+                            strokeWeight: 8,
+                            map: map
+                        });
+                    })
+                });
+
+                trail.PanoramicsInTrail.forEach(panoramic => {
+                    panoramic.Connections.forEach(connection => {
+
+                        let destination = trail.PanoramicsInTrail.filter(function (pan) { return pan.PanoramicId === connection.DestinationId; })[0];
+
+                        let connectionSource = new google.maps.LatLng(panoramic.Latitude, panoramic.Longitude);
+                        let connectionDest = new google.maps.LatLng(destination.Latitude, destination.Longitude);
+
+                        if (userVisitedPanoramicIds.includes(panoramic.PanoramicId) && userVisitedPanoramicIds.includes(destination.PanoramicId)) {
+                            let visitedSection = new google.maps.Polyline({
+                                path: [connectionSource, connectionDest],
+                                strokeColor: "#FF0000",
+                                strokeOpacity: 1,
+                                strokeWeight: 4,
+                                map: map
+                            });
+                        }
+                    })
+                });
             });
 
             // markers for each Trail Head
@@ -86,7 +132,7 @@ function initParkMap() {
                 i++;
             });
 
-            // markers for each Trail Head
+            // markers for each Point of Interest
             park.Trails.forEach(function (trail) {
                 trail.PointsOfInterest.forEach(function (pointOfInterest) {
                     poiDetails.name = `Point of Interest on ${trail.Name}`;
