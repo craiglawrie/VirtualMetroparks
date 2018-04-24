@@ -148,11 +148,7 @@ function MakeTour() {
                         "targetYaw": connection.DestinationStartYaw,
                         "targetPitch": "same",
                         "clickHandlerFunc": function () {
-                            setBackgroundAudioForNewPanoramic(connection.DestinationId);
-                            fetch(domainAddress + `/api/visited/${connection.DestinationId}`, {
-                                method: 'POST',
-                                credentials: 'include'
-                            });
+                            processNewPanoramicVisit(connection.DestinationId);
                         }
                     };
                     panoramicHotSpots.push(hotSpot);
@@ -205,11 +201,18 @@ function MakeTour() {
 
             pannellum.viewer('panorama', viewerParameters);
 
-            setBackgroundAudioForNewPanoramic(panoramicId);
+            processNewPanoramicVisit(panoramicId);
         });
 
 }
 
+function processNewPanoramicVisit(panoramicId) {
+    setBackgroundAudioForNewPanoramic(panoramicId);
+    fetch(domainAddress + `/api/visited/${panoramicId}`, {
+        method: 'POST',
+        credentials: 'include'
+    });
+}
 
 function setBackgroundAudioForNewPanoramic(destinationId) {
     fetch(domainAddress + `/api/panoramic/${destinationId}`)

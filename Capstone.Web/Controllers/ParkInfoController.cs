@@ -75,7 +75,10 @@ namespace Capstone.Web.Controllers
         [Route("api/visited/{panoramicId}")]
         public IHttpActionResult RecordUserVisitedPanoramic(int panoramicId)
         {
-            Console.WriteLine("testing, testing, 1,2,3");
+            if (User.Identity.IsAuthenticated)
+            {
+                panoramicDAL.AddVisitedPanoramicByUsername(panoramicId, User.Identity.Name);
+            }
             return Ok();
         }
     }

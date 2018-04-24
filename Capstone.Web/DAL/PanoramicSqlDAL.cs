@@ -296,26 +296,32 @@ namespace Capstone.Web.DAL
             }
 
             return backgroundSoundClips;
-            
+
         }
 
         public bool AddVisitedPanoramicByUsername(int panoramicId, string userName)
         {
             bool result = false;
 
-            try
+            if (!GetVisitedPanoramicsByUsername(userName).Select(pan => pan.PanoramicId).Contains(panoramicId))
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                try
                 {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("", conn);
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(@"INSERT INTO user_panoramic_associative (panoramic_image_id, UserId) 
+                                                      VALUES(@panoramicId, (SELECT UserId FROM Users WHERE UserName = @userName));", conn);
+                        cmd.Parameters.AddWithValue("@panoramicId", panoramicId);
+                        cmd.Parameters.AddWithValue("@userName", userName);
 
-                    result = cmd.ExecuteNonQuery() == 1;
+                        result = cmd.ExecuteNonQuery() == 1;
+                    }
                 }
-            }
-            catch (SqlException)
-            {
-                throw;
+                catch (SqlException)
+                {
+                    throw;
+                }
             }
 
             return result;
@@ -330,7 +336,15 @@ namespace Capstone.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT pi.* 
+                                                      FROM panoramic_images pi 
+                                                      JOIN user_panoramic_associative upa
+                                                        ON upa.panoramic_image_id = pi.panoramic_image_id
+                                                      JOIN Users u
+                                                        ON u.UserId = upa.UserId
+                                                      WHERE u.UserName = @userName;", conn);
+                    cmd.Parameters.AddWithValue("@userName", userName);
+
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
