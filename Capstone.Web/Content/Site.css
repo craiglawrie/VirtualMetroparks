@@ -56,42 +56,15 @@ textarea {
     grid-template-areas: 'a b';
 }
 
-@media (max-width: 768px) {
-    #logo-header {
-        grid-template-columns: 1fr;
-        grid-gap: 5px;
-        grid-template-areas: 'a' 'b';
-    }
-
-    body {
-        padding-top: 300px;
-    }
-
-    #entrance-text {
-    }
-
-    .home-title-top {
-    }
-
-    .home-p-top {
-    }
-
-    .home-title-second {
-    }
-
-    .home-p-second {
-    }
-}
-
 .left-header {
     grid-area: a;
     align-self: center;
 }
 
-    .left-header img {
+    .left-header img, a {
         width: 300px;
         display: inline-block;
-        position: relative;
+        z-index: -1;
     }
 
 .right-header {
@@ -126,6 +99,42 @@ textarea {
 div.navbar {
     background-color: rgb(38, 37, 37);
     position: absolute;
+}
+
+@media (max-width: 768px) {
+    #logo-header {
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        grid-template-areas: 'a' 'b';
+    }
+
+    .left-header {
+        margin-top: -3rem;
+    }
+
+    .right-header, .right-header-amp {
+        margin-top: -8rem;
+        margin-bottom: 1rem;
+    }
+
+    body {
+        padding-top: 220px;
+    }
+
+    #entrance-text {
+    }
+
+    .home-title-top {
+    }
+
+    .home-p-top {
+    }
+
+    .home-title-second {
+    }
+
+    .home-p-second {
+    }
 }
 
 footer {
@@ -337,16 +346,30 @@ footer {
 
 #links-bar {
     color: white;
-    text-decoration: none;
-
+    margin-top: -3rem;
 }
 
-#links-bar a:first-child, span:first-child {
-   margin-left: 5rem;
-}
+    #links-bar form:first-of-type {
+        margin-left: 10rem;
+    }
 
-#links-bar btn-group {
+    #links-bar btn-group {
+        display: inline-block;
+    }
+
+.linkbar-button {
     display: inline-block;
+    color: white;
+    background-color: transparent;
+    padding: 1rem;
+    margin: 0;
+    border: none;
+    z-index: 3;
+}
+
+.inline-form {
+    display: inline-block;
+    z-index: 3;
 }
 
 /* PARK/TRAIL LAYOUT *************************************************************/
@@ -371,7 +394,7 @@ footer {
 }
 
 .title-text h1 {
-    text-align: ;
+    text-align:;
     vertical-align: super;
     text-transform: lowercase;
     font-size: 2em;
