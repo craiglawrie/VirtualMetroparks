@@ -149,6 +149,10 @@ function MakeTour() {
                         "targetPitch": "same",
                         "clickHandlerFunc": function () {
                             setBackgroundAudioForNewPanoramic(connection.DestinationId);
+                            fetch(domainAddress + `/api/visited/${connection.DestinationId}`, {
+                                method: 'POST',
+                                credentials: 'include'
+                            });
                         }
                     };
                     panoramicHotSpots.push(hotSpot);

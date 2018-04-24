@@ -194,9 +194,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParkInfoController.cs" />
     <Compile Include="Controllers\VirtualTrailsController.cs" />
-    <Compile Include="DAL\FakePanoramicDAL.cs" />
-    <Compile Include="DAL\FakeParkDAL.cs" />
-    <Compile Include="DAL\FakeTrailDAL.cs" />
     <Compile Include="DAL\ILastSeenImagesDAL.cs" />
     <Compile Include="DAL\ILastSeenVideosDAL.cs" />
     <Compile Include="DAL\IPanoramicDAL.cs" />

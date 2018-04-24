@@ -31,13 +31,7 @@ namespace Capstone.Web
             var kernel = new StandardKernel();
 
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            // Configure Bindings to FAKE DALs
-            //kernel.Bind<IParkDAL>().To<FakeParkDAL>();
-            //kernel.Bind<ITrailDAL>().To<FakeTrailDAL>();
-            //kernel.Bind<IPanoramicDAL>().To<FakePanoramicDAL>();
-
-            // Configure Bindings to REAL DALs
+            
             kernel.Bind<IParkDAL>().To<ParkSqlDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<ITrailDAL>().To<TrailSqlDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<IPanoramicDAL>().To<PanoramicSqlDAL>().WithConstructorArgument("connectionString", connectionString);

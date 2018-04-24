@@ -70,5 +70,13 @@ namespace Capstone.Web.Controllers
             panoramic.BackgroundSoundClips = panoramicDAL.GetBackgroundSoundClipsByPanoramicId(panoramicId);
             return Ok(panoramic);
         }
+
+        [HttpPost]
+        [Route("api/visited/{panoramicId}")]
+        public IHttpActionResult RecordUserVisitedPanoramic(int panoramicId)
+        {
+            Console.WriteLine("testing, testing, 1,2,3");
+            return Ok();
+        }
     }
 }
