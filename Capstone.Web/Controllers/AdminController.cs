@@ -17,19 +17,31 @@ namespace Capstone.Web.Controllers
         {
             this.dal = dal;
         }
-    
+
         // GET: User
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View("AddHotspot");
+        //}
+
+        [HttpGet]
+        public ActionResult AddHotspot()
         {
-            return View("AddHotspot");
+            return View("AddHotspot");   
+        }
+
+        [HttpPost]
+        public ActionResult AddHotspot(AddHotspot addHotspot)
+        {
+            bool success = dal.SaveNewHotspot(addHotspot);
+            return RedirectToAction("AddHotspotResult", success);
         }
 
         [HttpGet]
-        public ActionResult AddHotspot(AddHotspot addHotspot)
+        public ActionResult AddHotspotResult(AddHotspot addHotspot)
         {
-            return View("AddHotspot");
-            //bool success = dal.SaveNewHotspot(addHotspot);
-            //return RedirectToAction("AddHotspotResult", success);
+            return View("AddHotspotResult");
         }
+
     }
 }
