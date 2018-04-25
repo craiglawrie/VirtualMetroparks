@@ -240,6 +240,7 @@
     <Content Include="Content\images\icons\drop-down.png" />
     <Content Include="Content\images\icons\favorite white.png" />
     <Content Include="Content\images\icons\favorite.png" />
+    <Content Include="Content\images\icons\lightbulb.png" />
     <Content Include="Content\images\icons\play.png" />
     <Content Include="Content\images\icons\see images white.png" />
     <Content Include="Content\images\icons\see images.png" />
