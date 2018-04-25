@@ -49,6 +49,7 @@ function initParkMap() {
 
     let marker = [];
     let trailDetails = {};
+    let leftOffDetails = {};
     let poiDetails = {};
     let i = 0;
     fetch(domainAddress + `/api/park/${parkName}`, {
@@ -71,7 +72,8 @@ function initParkMap() {
             // draw trails, loops, paths, etc
             let userVisitedPanoramicIds = park.UserVisitedPanoramics.map(function (pan) { return pan.PanoramicId; });
             park.Trails.forEach(trail => {
-                let uniqueConnections = [];
+
+                // Draw trail, regardless of visited status
                 trail.PanoramicsInTrail.forEach(panoramic => {
                     panoramic.Connections.forEach(connection => {
 
@@ -90,6 +92,7 @@ function initParkMap() {
                     })
                 });
 
+                // Draw red progress for visited locations
                 trail.PanoramicsInTrail.forEach(panoramic => {
                     panoramic.Connections.forEach(connection => {
 
@@ -113,7 +116,7 @@ function initParkMap() {
 
             // markers for each Trail Head
             park.Trails.forEach(function (trail) {
-                trailDetails.name = trail.Name;
+                trailDetails.name = trail.Name + ` - Trail Head`;
                 trailDetails.lat = trail.TrailHead.Latitude;
                 trailDetails.lng = trail.TrailHead.Longitude;
                 trailDetails.link = domainAddress + `/VirtualTrails/ViewTrail/?trailName=${trail.Name}&panoramicId=${trail.TrailHead.PanoramicId}`;
@@ -122,7 +125,8 @@ function initParkMap() {
                     position: trailDetails,
                     title: trailDetails.name,
                     map: map,
-                    destinationLink: trailDetails.link
+                    destinationLink: trailDetails.link,
+                    icon: `https://contattafiles.s3.us-west-1.amazonaws.com/tecommunity/oKyGFk97qM30TAV/hiking_tourism.png`
                 });
 
                 google.maps.event.addListener(marker[i], 'click', function () {
@@ -144,7 +148,8 @@ function initParkMap() {
                         position: poiDetails,
                         title: poiDetails.name,
                         map: map,
-                        destinationLink: poiDetails.link
+                        destinationLink: poiDetails.link,
+                        icon: `https://contattafiles.s3.us-west-1.amazonaws.com/tecommunity/rKRs-rJdGQmJ8DU/cluster.png`
                     });
 
                     google.maps.event.addListener(marker[i], 'click', function () {
@@ -152,6 +157,38 @@ function initParkMap() {
                     })
 
                     i++;
+                });
+            });
+
+            // markers for Pick Up Where You Left Off
+            park.Trails.forEach(trail => {
+                trail.PanoramicsInTrail.forEach(panoramic => {
+                    if (userVisitedPanoramicIds.includes(panoramic.PanoramicId)) {
+                        let visitedConnections = panoramic.Connections.filter(function (connection) { return userVisitedPanoramicIds.includes(connection.DestinationId) });
+
+                        if (visitedConnections.length > 0 && visitedConnections.length < panoramic.Connections.length) {
+
+                            leftOffDetails.name = trail.Name + ` - Pick Up Where You Left Off`;
+                            leftOffDetails.lat = panoramic.Latitude;
+                            leftOffDetails.lng = panoramic.Longitude;
+                            leftOffDetails.link = domainAddress + `/VirtualTrails/ViewTrail/?trailName=${trail.Name}&panoramicId=${panoramic.PanoramicId}`;
+
+                            marker[i] = new google.maps.Marker({
+                                position: leftOffDetails,
+                                title: leftOffDetails.name,
+                                map: map,
+                                destinationLink: leftOffDetails.link,
+                                icon: `https://contattafiles.s3.us-west-1.amazonaws.com/tecommunity/yoVZuT5sPPOVZNa/hiking.png`
+                            });
+
+                            google.maps.event.addListener(marker[i], 'click', function () {
+                                window.location.href = this.destinationLink;
+                            })
+
+                            i++;
+                        }
+                    }
+
                 });
             });
         });
