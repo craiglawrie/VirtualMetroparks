@@ -406,7 +406,7 @@ footer {
     vertical-align: super;
     text-transform: lowercase;
     font-size: 2em;
-    font-family: 'Bangla MN';
+    font-family: 'Philosopher', sans-serif;
 }
 
 .title-text h2 {
@@ -414,14 +414,16 @@ footer {
     vertical-align: baseline;
     text-transform: uppercase;
     font-size: 5em;
-    font-family: 'Bangla MN';
+    font-family: 'Philosopher', sans-serif;
+
 }
 
 .title-text h3 {
     text-align: center;
     vertical-align: middle;
     font-size: 4em;
-    font-family: 'Bangla MN';
+    font-family: 'Philosopher', sans-serif;
+
 }
 
 .park-list-description {
@@ -480,7 +482,8 @@ footer {
     display: block;
     margin: 0px;
     padding: 0px;
-    font-family: 'Bangla MN';
+    font-family: 'Philosopher', sans-serif;
+
 }
 
 /*.container {
@@ -506,8 +509,9 @@ footer {
     text-align: left;
     vertical-align: baseline;
     font-size: 2em;
-    font-family: 'Bangla MN';
-    margin: 5px 0 0 0;
+    font-family: 'Philosopher', sans-serif;
+    margin: 5px 0 0 0
+
 }
 
 .last-seen {
