@@ -1,0 +1,39 @@
+﻿@model Capstone.Web.Models.AddHotspot
+@{
+    ViewBag.Title = "AddHotspot";
+}
+
+<h2>AddHotspot</h2>
+
+<div class="add-hotspot">
+    <form action="@Url.Action("AddHotspot", "Admin")" method="post">
+        <img src="~/Content/images/.jpg" />
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-2 col-form-label">Title</label>
+            <div class="col-10">
+                <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleTextarea">Description</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="mediaType">Media Type</label>
+            <select class="form-control" id="mediaType">
+                <option value="img">Image</option>
+                <option value="video">Video</option>
+                <option value="text">Text</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+        </div>
+    </form>
+
+</div>
+

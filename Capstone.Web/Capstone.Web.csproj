@@ -193,7 +193,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParkInfoController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\VirtualTrailsController.cs" />
+    <Compile Include="DAL\AddHotspotSqlDAL.cs" />
+    <Compile Include="DAL\IAddHotspotDAL.cs" />
     <Compile Include="DAL\ILastSeenImagesDAL.cs" />
     <Compile Include="DAL\ILastSeenVideosDAL.cs" />
     <Compile Include="DAL\IPanoramicDAL.cs" />
@@ -212,6 +215,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddHotspot.cs" />
     <Compile Include="Models\BackgroundSoundClip.cs" />
     <Compile Include="Models\LastSeenImagesModel.cs" />
     <Compile Include="Models\LastSeenModel.cs" />
@@ -299,6 +303,8 @@
     <Content Include="Views\VirtualTrails\ChoosePark.cshtml" />
     <Content Include="Views\VirtualTrails\ChooseTrail.cshtml" />
     <Content Include="Views\VirtualTrails\ViewTrail.cshtml" />
+    <Content Include="Views\Users\AddHotspot.cshtml" />
+    <Content Include="Views\Users\AddHotspotResult.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
