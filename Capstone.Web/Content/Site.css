@@ -61,7 +61,7 @@ textarea {
     align-self: center;
 }
 
-    .left-header img, a {
+    .left-header img, .left-header a {
         width: 300px;
         display: inline-block;
         z-index: -1;
@@ -592,28 +592,13 @@ footer {
     }
 
     .trail-view-actionbar {
-        grid-template-columns: 8fr 1fr 1fr 1fr;
-        grid-template-areas: 'icon-mute icon-image icon-play icon-favorite-trail';
+        grid-template-columns: 8fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 'icon-mute icon-lightbulb icon-image icon-play icon-favorite-trail';
         grid-gap: 10px;
         display: grid;
     }
 
-    #icon-mute {
-        width: 50px;
-        vertical-align: middle;
-    }
-
-    #icon-image {
-        width: 50px;
-        vertical-align: middle;
-    }
-
-    #icon-play {
-        width: 50px;
-        vertical-align: middle;
-    }
-
-    #icon-favorite-trail {
+    .trail-view-actionbar img {
         width: 50px;
         vertical-align: middle;
     }
@@ -628,28 +613,37 @@ footer {
     }
 
     .trail-view-actionbar {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'icon-mute icon-image icon-play icon-favorite-trail';
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 'icon-mute icon-lightbulb icon-image icon-play icon-favorite-trail';
         grid-gap: 30px;
         display: grid;
         padding-left: 80px;
     }
+}
 
-    #icon-mute {
-        width: 40px;
-    }
 
-    #icon-image {
-        width: 40px;
-    }
+.trail-view-actionbar img {
+    width: 40px;
+}
 
-    #icon-play {
-        width: 40px;
-    }
+#icon-mute {
+    grid-area: icon-mute;
+}
 
-    #icon-favorite-trail {
-        width: 40px;
-    }
+#icon-image {
+    grid-area: icon-image;
+}
+
+#icon-play {
+    grid-area: icon-play;
+}
+
+#icon-lightbulb {
+    grid-area: icon-lightbulb;
+}
+
+#icon-favorite-trail {
+    grid-area: icon-favorite-trail;
 }
 
 @media (max-width: 539px) {
