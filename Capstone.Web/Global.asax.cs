@@ -37,6 +37,7 @@ namespace Capstone.Web
             kernel.Bind<IPanoramicDAL>().To<PanoramicSqlDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<ILastSeenImagesDAL>().To<LastSeenImagesSqlDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<ILastSeenVideosDAL>().To<LastSeenVideosSqlDAL>().WithConstructorArgument("connectionString", connectionString);
+            kernel.Bind<IAddHotspotDAL>().To<AddHotspotSqlDAL>().WithConstructorArgument("connectionString", connectionString);
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 

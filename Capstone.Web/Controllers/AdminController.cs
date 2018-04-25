@@ -24,11 +24,12 @@ namespace Capstone.Web.Controllers
             return View("AddHotspot");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult AddHotspot(AddHotspot addHotspot)
         {
-            bool success = dal.SaveNewHotspot(addHotspot);
-            return RedirectToAction("AddHotspotResult", success);
+            return View("AddHotspot");
+            //bool success = dal.SaveNewHotspot(addHotspot);
+            //return RedirectToAction("AddHotspotResult", success);
         }
     }
 }
