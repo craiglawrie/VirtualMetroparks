@@ -202,7 +202,7 @@ audio.addEventListener("ended", function () {
 });
 var audioFile;
 var soundClips = [];
-
+let viewer;
 function MakeTour() {
     let trailName = getParameterByName("trailName");
     let panoramicId = getParameterByName("panoramicId");
@@ -282,11 +282,19 @@ function MakeTour() {
                 };
             });
 
-            pannellum.viewer('panorama', viewerParameters);
+            viewer = pannellum.viewer('panorama', viewerParameters);
+            viewer.on('mouseup', function (mouseEvent) {
+                processClickOnPannellum(mouseEvent);
+            });
 
             processNewPanoramicVisit(panoramicId);
         });
 
+}
+
+function processClickOnPannellum(mouseEvent) {
+    let mouseYaw = viewer.mouseEventToCoords(mouseEvent)[1];
+    let mousePitch = viewer.mouseEventToCoords(mouseEvent)[0];
 }
 
 function processNewPanoramicVisit(panoramicId) {
