@@ -5,23 +5,26 @@
 
 <h2 id="add-hotspot-title" class="col-lg-offset-5">Add Hotspot</h2>
 
-<div class="container" id="hotspot-example-img">
 <form action="@Url.Action("AddHotspot", "Admin")" method="post">
-    <img src="~/Content/images/hotspotStilllExampleWithCursor.png" alt="(This is just a still of an example)" />
-</form>
-</div>
+
+    <div class="container" id="hotspot-example-img">
+        <img src="~/Content/images/hotspotStilllExampleWithCursor.png" alt="(This is just a still of an example)" />
+    </div>
     <div class="container" id="add-hotspot">
+       
         <div class="form-group">
-            <label for="example-text-input" class="col-lg-4 col-form-label">Title<span style="color: red; font-size: 1.3em;">*</span></label>
+            <label for="textInput" class="col-lg-4">Title<span style="color: red; font-size: 1.3em;">*</span></label>
             <div>
-                <input class="form-control" type="text" value="Title of hotspot" id="example-text-input">
+                <input class="form-control" type="text" placeholder="Title of Hotspot" id="example-text-input">
+                <small class="form-text text-muted col-lg-offset-0">Examples: "Hemlock Tree" || "Giant's Feet" || "Henry Church Rock"</small>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="exampleTextarea" class="col-lg-4">Description</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+            <label for="textArea" class="col-lg-4">Description</label>
+            <textarea class="form-control" id="exampleTextArea" rows="3"></textarea>
         </div>
+
         <div class="form-group">
             <label for="mediaType" class="col-lg-4">Media Type</label>
             <select class="form-control" id="mediaType">
@@ -30,13 +33,18 @@
                 <option value="text">Text</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="exampleInputFile" class="col-lg-4">File input</label>
+        @*<div class="form-group" style="margin-top: 30px;">
+            <label for="inputFile" class="col-lg-4">File input</label>
             <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
             <small id="fileHelp" class="form-text text-muted">Find any images or videos you'd like to link to if on your computer.</small>
         </div>
+        <p class="col-lg-offset-4" style="margin-top: 0;">OR</p>*@
+        <div class="form-group">
+            <label for="inputUrl" class="col-lg-4">URL</label>
+            <input type="url" class="form-control" id="inputUrl" placeholder="https://www.imgur.com/" aria-describedby="urlHelp">
+            <small id="urlHelp" class="form-text text-muted">Find any images or videos online you'd like to display.</small>
+        </div>
         <button type="submit" class="btn btn-primary col-lg-offset-5">Submit</button>
-</form>
-
     </div>
 
+</form>
