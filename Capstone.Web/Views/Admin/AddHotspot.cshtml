@@ -8,21 +8,27 @@
 <form action="@Url.Action("AddHotspot", "Admin")" method="post">
 
     <div class="container" id="hotspot-example-img">
-        <img src="~/Content/images/hotspotStilllExampleWithCursor.png" alt="(This is just a still of an example)" />
+        @*<img src="~/Content/images/hotspotStilllExampleWithCursor.png" alt="(This is just a still of an example)" />*@
+        <div id="addHotspotPanorama"></div>
+
+        <link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css" />
+        <script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"></script>
+        <script src="~/Scripts/AdminScripts.js"></script>
+        <script type="text/javascript">ShowPanoramic(22);</script>
     </div>
     <div class="container" id="add-hotspot">
        
         <div class="form-group">
             <label for="textInput" class="col-lg-4">Title<span style="color: red; font-size: 1.3em;">*</span></label>
             <div>
-                <input class="form-control" type="text" placeholder="Title of Hotspot" id="example-text-input">
+                <input class="form-control" type="text" placeholder="Title of Hotspot" id="new-hotspot-title">
                 <small class="form-text text-muted col-lg-offset-0">Examples: "Hemlock Tree" || "Giant's Feet" || "Henry Church Rock"</small>
             </div>
         </div>
 
         <div class="form-group">
             <label for="textArea" class="col-lg-4">Description</label>
-            <textarea class="form-control" id="exampleTextArea" rows="3"></textarea>
+            <textarea class="form-control" id="new-hotspot-description" rows="3"></textarea>
         </div>
 
         <div class="form-group">
