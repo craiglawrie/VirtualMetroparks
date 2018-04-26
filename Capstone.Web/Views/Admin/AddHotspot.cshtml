@@ -1,18 +1,18 @@
-﻿@model Capstone.Web.Models.AddHotspot
+﻿@model Capstone.Web.Models.AdminNewHotspotModel
 @{
-    ViewBag.Title = "AddHotspot";
+    ViewBag.Title = "Add Hotspot";
 }
 
-<h2>AddHotspot</h2>
+<h2>Add Hotspot</h2>
 
 <div class="add-hotspot">
     <form action="@Url.Action("AddHotspot", "Admin")" method="post">
         <img src="~/Content/images/.jpg" />
 
         <div class="form-group row">
-            <label for="example-text-input" class="col-2 col-form-label">Title</label>
+            <label for="example-text-input" class="col-2 col-form-label">Title<span style="color: red;">*</span></label>
             <div class="col-10">
-                <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                <input class="form-control" type="text" value="Title of hotspot" id="example-text-input">
             </div>
         </div>
 
@@ -31,7 +31,7 @@
         <div class="form-group">
             <label for="exampleInputFile">File input</label>
             <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+            <small id="fileHelp" class="form-text text-muted">This is where you should find any images or videos you'd like to link to if on your computer.</small>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
