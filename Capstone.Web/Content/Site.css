@@ -102,6 +102,16 @@ div.navbar {
     position: absolute;
 }
 
+#loginForm {
+    margin: 0 auto;
+    width: 20%;
+}
+
+#registerForm {
+    margin: 0 auto;
+    width: 20%;
+}
+
 @media (max-width: 768px) {
     #logo-header {
         grid-template-columns: 1fr;
@@ -402,7 +412,7 @@ footer {
 }
 
 .title-text h1 {
-    text-align:;
+    text-align: center;
     vertical-align: super;
     text-transform: lowercase;
     font-size: 2em;
@@ -415,7 +425,6 @@ footer {
     text-transform: uppercase;
     font-size: 5em;
     font-family: 'Philosopher', sans-serif;
-
 }
 
 .title-text h3 {
@@ -423,7 +432,6 @@ footer {
     vertical-align: middle;
     font-size: 4em;
     font-family: 'Philosopher', sans-serif;
-
 }
 
 .park-list-description {
@@ -483,7 +491,6 @@ footer {
     margin: 0px;
     padding: 0px;
     font-family: 'Philosopher', sans-serif;
-
 }
 
 /*.container {
@@ -511,7 +518,6 @@ footer {
     font-size: 2em;
     font-family: 'Philosopher', sans-serif;
     margin: 5px 0 0 0
-
 }
 
 .last-seen {
@@ -602,10 +608,10 @@ footer {
         display: grid;
     }
 
-    .trail-view-actionbar img {
-        width: 50px;
-        vertical-align: middle;
-    }
+        .trail-view-actionbar img {
+            width: 50px;
+            vertical-align: middle;
+        }
 }
 
 @media (max-width: 992px) {
@@ -714,4 +720,26 @@ footer {
         border-radius: 5px;
         padding-bottom: 0;
     }
+}
+
+/* Style for admin add hotspot**************************************************************/
+
+#add-hotspot {
+    margin: 0 auto;
+    width: 50%;
+}
+
+#add-hotspot-title {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 3em;
+}
+
+#hotspot-example-img {
+    display: block;
+    margin: 5px 0 20px 0;
+    width: 70%;
+}
+
+#successful-hotspot {
+    text-align: center;
 }

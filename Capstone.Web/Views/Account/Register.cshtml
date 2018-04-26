@@ -1,31 +1,36 @@
 ﻿@model Capstone.Web.Models.RegisterViewModel
 @{
 
-                ViewBag.Title = "Register";
+    ViewBag.Title = "Register";
 }
+<div class="title-text">
+    <h2>Please register for the Virtual Metroparks system.</h2>
+    <h1 style="margin-bottom: 20px;">An account allows you to favorite trails, track your progress, and more!</h1>
+</div>
 
-<h2>Please register for the Virtual Metroparks system.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>An account allows you to favorite trails, track your progress, and more!</h4>
+<section id="registerForm">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
     <div class="form-group row">
         @Html.TextBoxFor(m => m.Email, new { placeholder = "email", @class = "form-control" })
         @Html.ValidationMessage("Email", new { @class = "invalid-field" })
+        <small class="form-text text-muted">We will never share your e-mail address.</small>
+
     </div>
-    <div class="form-group row">
-        @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class = "form-control" })
-        @Html.ValidationMessage("Password", new { @class = "invalid-field" })
-    </div>
-    <div class="form-group row">
-        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "form-control" })
-        @Html.ValidationMessage("ConfirmPassword", new { @class = "invalid-field" })
-    </div>
-    <div class="form-group row">
-        @Html.ValidationMessage("", new { @class = "invalid-field" })
-    </div>
-    <div class="form-group row">
-        <input type="submit" value="Register" class="btn btn-primary" />
-    </div>
-}
+        <div class="form-group row">
+            @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class = "form-control" })
+            @Html.ValidationMessage("Password", new { @class = "invalid-field" })
+        </div>
+        <div class="form-group row">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "form-control" })
+            @Html.ValidationMessage("ConfirmPassword", new { @class = "invalid-field" })
+        </div>
+        <div class="form-group row">
+            @Html.ValidationMessage("", new { @class = "invalid-field" })
+        </div>
+        <div class="form-group row">
+            <input type="submit" value="Register" class="btn btn-primary col-lg-offset-4" />
+        </div>
+    }
+</section>

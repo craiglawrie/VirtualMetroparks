@@ -237,6 +237,7 @@
     <Content Include="Content\images\background-img-wide-shot-forest-bottom.jpg" />
     <Content Include="Content\images\background-img-wide-shot-waterfall.jpg" />
     <Content Include="Content\images\HenryChurchRock.jpg" />
+    <Content Include="Content\images\hotspotStilllExampleWithCursor.png" />
     <Content Include="Content\images\icons\camera black.png" />
     <Content Include="Content\images\icons\camera white.png" />
     <Content Include="Content\images\icons\camera.png" />
