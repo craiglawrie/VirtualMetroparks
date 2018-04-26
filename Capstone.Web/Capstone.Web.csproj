@@ -195,8 +195,8 @@
     <Compile Include="Controllers\ParkInfoController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\VirtualTrailsController.cs" />
-    <Compile Include="DAL\AddHotspotSqlDAL.cs" />
-    <Compile Include="DAL\IAddHotspotDAL.cs" />
+    <Compile Include="DAL\AdminNewHotspotSqlDAL.cs" />
+    <Compile Include="DAL\IAdminNewHotspotDAL.cs" />
     <Compile Include="DAL\ILastSeenImagesDAL.cs" />
     <Compile Include="DAL\ILastSeenVideosDAL.cs" />
     <Compile Include="DAL\IPanoramicDAL.cs" />
@@ -215,7 +215,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AddHotspot.cs" />
+    <Compile Include="Models\AdminNewHotspotModel.cs" />
     <Compile Include="Models\BackgroundSoundClip.cs" />
     <Compile Include="Models\LastSeenImagesModel.cs" />
     <Compile Include="Models\LastSeenModel.cs" />
@@ -260,11 +260,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="schema.sql" />
-    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\Fonts\FontAwesome.otf" />
-    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\Fonts\Nimbus_Sans_Becker_PBla.ttf.woff" />
-    <Content Include="Content\Fonts\Nimbus_Sans_Becker_PBla.ttf.eot" />
     <Content Include="Content\Fonts\Bangla MN.ttf" />
     <Content Include="Content\Fonts\OCR A Std Regular.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

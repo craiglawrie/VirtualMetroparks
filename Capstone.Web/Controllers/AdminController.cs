@@ -12,8 +12,8 @@ namespace Capstone.Web.Controllers
 {
     public class AdminController : Controller
     {
-        IAddHotspotDAL dal;
-        public AdminController(IAddHotspotDAL dal)
+        IAdminNewHotspotDAL dal;
+        public AdminController(IAdminNewHotspotDAL dal)
         {
             this.dal = dal;
         }
@@ -31,14 +31,14 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddHotspot(AddHotspot addHotspot)
+        public ActionResult AddHotspot(AdminNewHotspotModel addHotspot)
         {
             bool success = dal.SaveNewHotspot(addHotspot);
             return RedirectToAction("AddHotspotResult", success);
         }
 
         [HttpGet]
-        public ActionResult AddHotspotResult(AddHotspot addHotspot)
+        public ActionResult AddHotspotResult(AdminNewHotspotModel addHotspot)
         {
             return View("AddHotspotResult");
         }

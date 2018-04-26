@@ -9,16 +9,16 @@ using System.Data.SqlClient;
 
 namespace Capstone.Web.DAL
 {
-    public class AddHotspotSqlDAL : IAddHotspotDAL
+    public class AdminNewHotspotSqlDAL : IAdminNewHotspotDAL
     {
         string connectionString;
 
-        public AddHotspotSqlDAL(string connectionString)
+        public AdminNewHotspotSqlDAL(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        public bool SaveNewHotspot(AddHotspot addHotspot)
+        public bool SaveNewHotspot(AdminNewHotspotModel addHotspot)
         {
             try
             {

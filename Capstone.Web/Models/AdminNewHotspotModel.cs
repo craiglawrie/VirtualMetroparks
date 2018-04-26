@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Capstone.Web.Models
 {
-    public class AddHotspot
+    public class AdminNewHotspotModel
     {
         public string Title { get; set; }
         public string Description { get; set; }

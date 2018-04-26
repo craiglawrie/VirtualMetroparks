@@ -7,8 +7,8 @@ using Capstone.Web.DAL;
 
 namespace Capstone.Web.DAL
 {
-    public interface IAddHotspotDAL
+    public interface IAdminNewHotspotDAL
     {
-        bool SaveNewHotspot(AddHotspot addHotspot);
+        bool SaveNewHotspot(AdminNewHotspotModel addHotspot);
     }
 }
