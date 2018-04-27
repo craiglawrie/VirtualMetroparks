@@ -1,0 +1,40 @@
+Opening
+///////Taniya Talukdar
+.Open with some anecdotes about people who would gain access to metroparks via our app. 
+Examples: A coworker's (Carole's) husband has bad knees and can no longer go on the hikes he used to love.
+ A teacher who doesn't have the luxury of busing their urban students out to the Metroparks. 
+ Someone has agoraphobia and doesn't feel comfortable going out in public but needs an immersive nature experience.
+ An experienced hiker looking to explore a new trail gets help choosing where to go next
+.Have you ever been in a position where you see problems arising but don't have the resources to solve them?
+.[Show the screenshot of the list of problems Metroparks already identified with the problems we solve highlighted.]
+.~Something about our app addressing the problems: attracts new users, allows access to those currently without,
+    better informs the public and gives naturalists a chance to shine
+.Go to maps.clevelandmetroparks.com and click through to where a button would be to where our app would be utilized
+    and walk them through it 
+.Switch tabs and go into our app already open in appharbor.
+
+///////Bethany Warner
+.Choose park, choose trail, view trail
+
+///////Craig Lawrie
+.User capabilities, add hotspot
+
+Future
+///////Tyler Grant
+.(Anonymous user:) can see different seasons within the panoramics, different times of day, hear different 
+    sounds based on these different temporal environments. Frogs at night, birdsong in spring and mornings, the 
+    crunch of snow in winter.
+.User: can add pictures, videos, and sounds within their own account, can upvote existing points of interest and 
+    hotspots, can create new possible points of interest, and can have a settings option for the speed on the autoplay
+    of the trail so they don't have to reset it on every page.
+.Admins: can edit and remove hotspots, approve or disapprove of user content before it becomes public, and can
+    add new panoramics and sounds.
+.Admins and users: will have a dashboard that allows them to view their favorite trails, their account settings,
+    the content they've specifically added.
+.Feasibility and scalability: Pull up an existing panoramic, ask them if it looks good. Show a slide of a 3D
+    expensive-looking hard-to-use camera mounted, then a slide of the same image with the circle and slash through
+    it. ~"Fortunately, you don't need this time-consuming equipment to make more trails accessible through our
+    app." Explain that it can (and has) been done using a three year old cell phone and a free built-in app (we
+    used Craig's Android, which just needed to download a feature for the existing built-in photo app). Each picture
+    is less than 4MB, affordable to store and quick to create.
+.Final statements, undiscussed
